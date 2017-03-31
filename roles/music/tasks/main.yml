@@ -3,19 +3,15 @@
     msg: "Running the Music ansible playbook..."
 
 # Tasks to install Music packages for the configs like mpd/abcde.
-- name: Symlink MPD config to user home directory
+- name: Symlink music configs to user home directory
   file:
-    src: ../mpd.conf
-    dest: ~/.mpdconf
+    src: '{{ role_path }}/files/{{ item }}'
+    dest: '~/{{ item }}'
     state: link
     force: yes  # See: https://github.com/ansible/ansible/issues/7627
-
-- name: Symlink abcde config to user home directory
-  file:
-    src: ../.abcde.conf
-    dest: ~/.abcde.conf
-    state: link
-    force: yes  # See: https://github.com/ansible/ansible/issues/7627
+  with_items:
+    - .mpdconf
+    - .abcde.conf
 
 - name: Install Music packages
   # http://docs.ansible.com/ansible/become.html
