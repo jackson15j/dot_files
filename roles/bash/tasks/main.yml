@@ -1,0 +1,25 @@
+---
+- debug:
+    msg: "Running the Bash ansible playbook..."
+
+- name: Symlink Tmux config to user home directory
+  file:
+    src: '{{ role_path }}/files/.tmux.conf'  # https://github.com/ansible/ansible/issues/5344
+    dest: ~/.tmux.conf
+    state: link
+    force: yes  # See: https://github.com/ansible/ansible/issues/7627
+
+- name: Install Bash packages
+  # http://docs.ansible.com/ansible/become.html
+  become: true
+  become_method: sudo  # requires running with --ask-become-pass.
+  # https://docs.ansible.com/ansible/pacman_module.html
+  pacman:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - tmux
+
+- debug:
+    msg: "...Completed running the Bash ansible playbook."
