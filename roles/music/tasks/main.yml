@@ -1,0 +1,41 @@
+---
+- debug:
+    msg: "Running the Music ansible playbook..."
+
+# Tasks to install Music packages for the configs like mpd/abcde.
+- name: Symlink MPD config to user home directory
+  file:
+    src: ../mpd.conf
+    dest: ~/.mpdconf
+    state: link
+    force: yes  # See: https://github.com/ansible/ansible/issues/7627
+
+- name: Symlink abcde config to user home directory
+  file:
+    src: ../.abcde.conf
+    dest: ~/.abcde.conf
+    state: link
+    force: yes  # See: https://github.com/ansible/ansible/issues/7627
+
+- name: Install Music packages
+  # http://docs.ansible.com/ansible/become.html
+  become: true
+  become_method: sudo  # requires running with --ask-become-pass.
+  # https://docs.ansible.com/ansible/pacman_module.html
+  pacman:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - mpd
+    - abcde
+    # TODO: double check mpd/abcde dependencies for flac/albumart...
+
+# FIXME: This might be first time only - investigat3e??
+# - name: Start MPD user service
+#   # wiki.archlinux.org/index.php/Music_Player_Daemon#Autostart_with_systemd
+#   # https://wiki.archlinux.org/index.php/Systemd/User
+#   shell: systemctl --user start mpd
+
+- debug:
+    msg: "...Completed running the Music ansible playbook."
