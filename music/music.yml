@@ -5,7 +5,7 @@
 # Tasks to install Music packages for the configs like mpd/abcde.
 - name: Symlink music configs to user home directory
   file:
-    src: '{{ role_path }}/files/{{ item }}'
+    src: '$PWD/{{ item }}'
     dest: '~/{{ item }}'
     state: link
     force: yes  # See: https://github.com/ansible/ansible/issues/7627
@@ -21,7 +21,6 @@
   pacman:
     name: "{{ item }}"
     state: latest
-    update_cache: yes
   with_items:
     - mpd
     - abcde

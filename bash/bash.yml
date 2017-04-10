@@ -4,7 +4,7 @@
 
 - name: Symlink Tmux config to user home directory
   file:
-    src: '{{ role_path }}/files/.tmux.conf'  # https://github.com/ansible/ansible/issues/5344
+    src: '$PWD/.tmux.conf'  # https://github.com/ansible/ansible/issues/5344
     dest: ~/.tmux.conf
     state: link
     force: yes  # See: https://github.com/ansible/ansible/issues/7627
@@ -17,7 +17,6 @@
   pacman:
     name: "{{ item }}"
     state: latest
-    update_cache: yes
   with_items:
     - tmux
 

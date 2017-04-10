@@ -1,6 +1,15 @@
 ---
 - hosts: 0.0.0.0
   connection: local
-  roles:
-    - bash
-    - music
+  tasks:
+    - name: Update & upgrade pacman once at start of ansible
+      # http://docs.ansible.com/ansible/become.html
+      become: true
+      become_method: sudo  # requires running with --ask-become-pass.
+      # https://docs.ansible.com/ansible/pacman_module.html
+      pacman:
+        update_cache: yes
+        upgrade: yes
+
+    - include: bash/bash.yml
+    - include: music/music.yml
