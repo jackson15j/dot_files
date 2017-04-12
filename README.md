@@ -10,6 +10,7 @@ to the `-K` or `--ask-become-pass` flag:
 ```
 
 **Note:** Hard-coded to ArchLinux and my own needs.
+**Note:** Need to out-of-band sort out ssh keys for grabbing github repos.
 
 Ansible Gotchas
 ---------------
