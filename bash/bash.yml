@@ -2,9 +2,16 @@
 - debug:
     msg: "Running the Bash ansible playbook..."
 
+- name: Get repo base path
+  command: git rev-parse --show-toplevel
+  register: repo_base_path
+
+- set_fact:
+    base_path: '{{repo_base_path.stdout}}/bash/'
+
 - name: Symlink Tmux config to user home directory
   file:
-    src: '$PWD/.tmux.conf'  # https://github.com/ansible/ansible/issues/5344
+    src: '{{base_path}}.tmux.conf'  # https://github.com/ansible/ansible/issues/5344
     dest: ~/.tmux.conf
     state: link
     force: yes  # See: https://github.com/ansible/ansible/issues/7627
