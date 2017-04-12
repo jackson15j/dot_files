@@ -1,0 +1,57 @@
+---
+- debug:
+    msg: "Running the Dev Environment ansible playbook..."
+
+- name: Get repo base path
+  command: git rev-parse --show-toplevel
+  register: repo_base_path
+
+- set_fact:
+    base_path: '{{repo_base_path.stdout}}/'
+
+- name: Install remote working packages
+  become: true
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - mosh
+
+- name: Install generic programming packages
+  become: true
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - make
+
+- name: Install system-wide python packages
+  become: true
+  become_method: sudo
+  pip:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - pep8
+    - flake8
+    - jedi
+    - virtualenvwrapper
+    - ipython
+    - ipdb
+
+- name: Install C++ packages
+  become: true
+  become_method: sudo
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - cmake
+    - gcc
+    - gdb
+    - clang
+
+- debug:
+    msg: "...Completed running the Dev Environment ansible playbook."

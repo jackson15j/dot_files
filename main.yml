@@ -13,3 +13,4 @@
 
     - include: bash/bash.yml
     - include: music/music.yml
+    - include: dev_environment.yml
