@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# This script starts up a tmux session that can be shared by another user.
+# It should be placed in /usr/bin/
+
+help ()
+{
+    echo "Usage: $0 [rw|ro]"
+}
+
+do_tmux ()
+{
+    mode=$1
+    socket=/tmp/tmux_share_socket
+    mode_file=/tmp/tmux_share_mode
+    # Linux: Unlock the guest account so our guest can get to our session
+    sudo usermod -U guest ## commented out, since don't have that on mac
+    # Mac: http://hints.macworld.com/article.php?story=20051109195739851 - how to disable a user on mac.
+    # sudo pwpolicy -u tmux -setpolicy isDisabled=0
+    echo ${mode} > ${mode_file}
+    # After tmux starts we need to chmod the socket it creates to make it
+    # readable by everyone. This starts a subshell that does that in a
+    # delayed way. This is not robust, but it's the best I could come up
+    # with in limited time!
+    (sleep 2; chmod 777 ${socket}) &
+    TERM=xterm-256color
+    tmux -S ${socket} new -s bob
+    #NOTE: to allow clients to connect to a different window, in the same
+    # session, you have to run the following command:
+    # tmux -S /tmp/tmux_share_socket new-session -t bob -s new_bob
+    rm ${socket}
+    rm ${mode_file}
+    # Linux: lock the guest account now we're done with it
+    sudo usermod -L guest
+    # Mac:
+    # sudo pwpolicy -u tmux -setpolicy isDisabled=1
+}
+
+if [[ -z $1 ]]; then
+    help
+    exit 0
+fi
+
+# Source my bashrc so that tmux alias gets made, making it use full colour :)
+source ~/.bashrc
+
+case "$1" in
+    rw)
+        do_tmux rw
+        exit $?
+        ;;
+    ro)
+        do_tmux ro
+        exit $?
+        ;;
+    *)
+        help
+        exit 1
+        ;;
+esac

@@ -16,6 +16,16 @@
     state: link
     force: yes  # See: https://github.com/ansible/ansible/issues/7627
 
+- name: Copy tmux_share script to /usr/local/bin for guest access.
+  become: true
+  become_method: sudo
+  copy:
+    src: '{{base_path}}tmux_share'
+    dest: /usr/local/bin/
+    owner: '{{ansible_user_id}}'
+    group: '{{ansible_user_gid}}'
+    mode: 0755
+
 - name: Install Bash packages
   # http://docs.ansible.com/ansible/become.html
   become: true
