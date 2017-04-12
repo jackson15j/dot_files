@@ -1,0 +1,12 @@
+---
+- name:  Update & upgrade pacman once at start of ansible
+  hosts: localhost
+  tasks:
+    - name:
+      # http://docs.ansible.com/ansible/become.html
+      become: true
+      become_method: sudo  # requires running with --ask-become-pass.
+      # https://docs.ansible.com/ansible/pacman_module.html
+      pacman:
+        update_cache: yes
+        upgrade: yes

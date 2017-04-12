@@ -1,43 +1,40 @@
 ---
-- debug:
-    msg: "Running the Music ansible playbook..."
+- name: Running the Music ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
 
-- name: Get repo base path
-  command: git rev-parse --show-toplevel
-  register: repo_base_path
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/music/'
 
-- set_fact:
-    base_path: '{{repo_base_path.stdout}}/music/'
+    # Tasks to install Music packages for the configs like mpd/abcde.
+    - name: Symlink music configs to user home directory
+      file:
+        src: '{{base_path}}{{ item }}'
+        dest: '~/{{ item }}'
+        state: link
+        force: yes  # See: https://github.com/ansible/ansible/issues/7627
+      with_items:
+        - .mpdconf
+        - .abcde.conf
 
-# Tasks to install Music packages for the configs like mpd/abcde.
-- name: Symlink music configs to user home directory
-  file:
-    src: '{{base_path}}{{ item }}'
-    dest: '~/{{ item }}'
-    state: link
-    force: yes  # See: https://github.com/ansible/ansible/issues/7627
-  with_items:
-    - .mpdconf
-    - .abcde.conf
+    - name: Install Music packages
+      # http://docs.ansible.com/ansible/become.html
+      become: true
+      become_method: sudo  # requires running with --ask-become-pass.
+      # https://docs.ansible.com/ansible/pacman_module.html
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - mpd
+        - abcde
+        # TODO: double check mpd/abcde dependencies for flac/albumart...
 
-- name: Install Music packages
-  # http://docs.ansible.com/ansible/become.html
-  become: true
-  become_method: sudo  # requires running with --ask-become-pass.
-  # https://docs.ansible.com/ansible/pacman_module.html
-  pacman:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - mpd
-    - abcde
-    # TODO: double check mpd/abcde dependencies for flac/albumart...
-
-# FIXME: This might be first time only - investigat3e??
-# - name: Start MPD user service
-#   # wiki.archlinux.org/index.php/Music_Player_Daemon#Autostart_with_systemd
-#   # https://wiki.archlinux.org/index.php/Systemd/User
-#   shell: systemctl --user start mpd
-
-- debug:
-    msg: "...Completed running the Music ansible playbook."
+    # FIXME: This might be first time only - investigat3e??
+    # - name: Start MPD user service
+    #   # wiki.archlinux.org/index.php/Music_Player_Daemon#Autostart_with_systemd
+    #   # https://wiki.archlinux.org/index.php/Systemd/User
+    #   shell: systemctl --user start mpd

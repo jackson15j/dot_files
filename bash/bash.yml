@@ -1,41 +1,38 @@
 ---
-- debug:
-    msg: "Running the Bash ansible playbook..."
+- name: Running the Music ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
 
-- name: Get repo base path
-  command: git rev-parse --show-toplevel
-  register: repo_base_path
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/bash/'
 
-- set_fact:
-    base_path: '{{repo_base_path.stdout}}/bash/'
+    - name: Symlink Tmux config to user home directory
+      file:
+        src: '{{base_path}}.tmux.conf'  # https://github.com/ansible/ansible/issues/5344
+        dest: ~/.tmux.conf
+        state: link
+        force: yes  # See: https://github.com/ansible/ansible/issues/7627
 
-- name: Symlink Tmux config to user home directory
-  file:
-    src: '{{base_path}}.tmux.conf'  # https://github.com/ansible/ansible/issues/5344
-    dest: ~/.tmux.conf
-    state: link
-    force: yes  # See: https://github.com/ansible/ansible/issues/7627
+    - name: Copy tmux_share script to /usr/local/bin for guest access.
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{base_path}}tmux_share'
+        dest: /usr/local/bin/
+        owner: '{{ansible_user_id}}'
+        group: '{{ansible_user_gid}}'
+        mode: 0755
 
-- name: Copy tmux_share script to /usr/local/bin for guest access.
-  become: true
-  become_method: sudo
-  copy:
-    src: '{{base_path}}tmux_share'
-    dest: /usr/local/bin/
-    owner: '{{ansible_user_id}}'
-    group: '{{ansible_user_gid}}'
-    mode: 0755
-
-- name: Install Bash packages
-  # http://docs.ansible.com/ansible/become.html
-  become: true
-  become_method: sudo  # requires running with --ask-become-pass.
-  # https://docs.ansible.com/ansible/pacman_module.html
-  pacman:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - tmux
-
-- debug:
-    msg: "...Completed running the Bash ansible playbook."
+    - name: Install Bash packages
+      # http://docs.ansible.com/ansible/become.html
+      become: true
+      become_method: sudo  # requires running with --ask-become-pass.
+      # https://docs.ansible.com/ansible/pacman_module.html
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - tmux
