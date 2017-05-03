@@ -83,3 +83,12 @@
         - {repo: 'git@github.com:jackson15j/android_test.git', dest:
           '~/github_repos/android_test/'}
 
+    - name: Install Github repos I have not yet forked.
+      git:
+        repo: "{{item.repo}}"
+        dest: "{{item.dest}}"
+        accept_hostkey: yes
+        update: no
+      with_items:
+        - {repo: 'git@github.com:emacsmirror/excorporate.git', dest:
+          '~/github_repos/excorporate/'}
