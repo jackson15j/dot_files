@@ -9,8 +9,11 @@ to the `-K` or `--ask-become-pass` flag:
  ansible-playbook main.yml -i hosts -K
 ```
 
-**Note:** Hard-coded to ArchLinux and my own needs.
-**Note:** Need to out-of-band sort out ssh keys for grabbing github repos.
+Notes
+-----
+
+* Hard-coded to ArchLinux and my own needs.
+* Need to out-of-band sort out ssh keys for grabbing github repos.
 
 Ansible Gotchas
 ---------------
