@@ -1,0 +1,37 @@
+---
+- name: Running the Dev Environment Docker ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Install Docker packages
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - docker
+
+    - name: Create docker group
+      become: true
+      become_method: sudo
+      group:
+        name: docker
+        state: present
+
+    - name: Add User to Docker group to allow non-root/sudo running of docker (Requires restart)
+      # TODO: figure out if it's safe to automate restarting the login manager
+      # locally.
+      become: true
+      become_method: sudo
+      user:
+        name: "{{ansible_user_id}}"
+        groups: docker
+        append: yes
+
+    - name: Configure & start Docker service
+      become: true
+      become_method: sudo
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
