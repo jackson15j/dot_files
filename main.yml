@@ -2,4 +2,4 @@
 - include: update_pacman.yml
 - include: bash/bash.yml
 - include: music/music.yml
-- include: dev_environment.yml
+- include: dev_env/dev_environment.yml

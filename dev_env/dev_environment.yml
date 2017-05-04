@@ -92,3 +92,10 @@
       with_items:
         - {repo: 'git@github.com:emacsmirror/excorporate.git', dest:
           '~/github_repos/excorporate/'}
+
+# FIXME: this is broken because I can't access folders below where ansible is
+# called.
+#
+# To fix it, I need to do git submodules which are created in the ansible
+# expected directory structure, so in a `roles` folder.
+# - include: "~/github_repos/dot_emacs/ansible/main.yml"
