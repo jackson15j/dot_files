@@ -1,0 +1,11 @@
+---
+- name: Running the Landslide Virtualenv ansible playbook for presentation rendering...
+  hosts: localhost
+  tasks:
+    - name: Creating landslide virtualenv
+      pip:
+        name: landslide
+        virtualenv: ~/virt_envs/landslide
+        state: latest
+      tags:
+        - virtualenvs

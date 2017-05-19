@@ -16,6 +16,7 @@ Ansible allows you to run specific parts of a playbook by using `--tags
 "<tag1>,<tag2>,...". I have the following tags:
 
 * `repos`: Just do the git clones of my repos.
+* `virtualenvs`: Just create my virtualenvs.
 
 Notes
 -----

@@ -4,3 +4,4 @@
 - include: music/music.yml
 - include: dev_env/docker.yml
 - include: dev_env/dev_environment.yml
+- include: dev_env/virtualenvs/landslide.yml

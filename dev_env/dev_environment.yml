@@ -40,6 +40,8 @@
         - virtualenvwrapper
         - ipython
         - ipdb
+      tags:
+        - virtualenvs
 
     - name: Install C++ packages
       become: true
