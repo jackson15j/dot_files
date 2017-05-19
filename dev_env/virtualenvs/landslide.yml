@@ -4,8 +4,11 @@
   tasks:
     - name: Creating landslide virtualenv
       pip:
-        name: landslide
+        name: "{{item}}"
         virtualenv: ~/virt_envs/landslide
         state: latest
+      with_items:
+        - landslide
+        - watchdog  # needed for the `--watch` for changes & regenerate slides option.
       tags:
         - virtualenvs
