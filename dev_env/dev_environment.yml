@@ -82,6 +82,8 @@
           '~/github_repos/reddit-mode/'}
         - {repo: 'git@github.com:jackson15j/android_test.git', dest:
           '~/github_repos/android_test/'}
+      tags:
+        - repos
 
     - name: Install Github repos I have not yet forked.
       git:
@@ -92,6 +94,8 @@
       with_items:
         - {repo: 'git@github.com:emacsmirror/excorporate.git', dest:
           '~/github_repos/excorporate/'}
+      tags:
+        - repos
 
 # FIXME: this is broken because I can't access folders below where ansible is
 # called.

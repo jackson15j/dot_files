@@ -9,6 +9,14 @@ to the `-K` or `--ask-become-pass` flag:
  ansible-playbook main.yml -i hosts -K
 ```
 
+Tags
+----
+
+Ansible allows you to run specific parts of a playbook by using `--tags
+"<tag1>,<tag2>,...". I have the following tags:
+
+* `repos`: Just do the git clones of my repos.
+
 Notes
 -----
 
