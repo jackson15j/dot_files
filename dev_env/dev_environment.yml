@@ -64,6 +64,7 @@
         state: latest
       with_items:
         - rabbitmq
+        - docker-compose
 
     - name: Install my github repos
       # Need to out of band, sort out the ssh keys to access github.
