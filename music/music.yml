@@ -5,9 +5,13 @@
     - name: Get repo base path
       command: git rev-parse --show-toplevel
       register: repo_base_path
+      tags:
+        - music
 
     - set_fact:
         base_path: '{{repo_base_path.stdout}}/music/'
+      tags:
+        - music
 
     # Tasks to install Music packages for the configs like mpd/abcde.
     - name: Symlink music configs to user home directory
@@ -19,6 +23,8 @@
       with_items:
         - .mpdconf
         - .abcde.conf
+      tags:
+        - music
 
     - name: Install Music packages
       # http://docs.ansible.com/ansible/become.html
@@ -32,8 +38,26 @@
         - mpd
         - abcde
         # TODO: double check mpd/abcde dependencies for flac/albumart...
+      tags:
+        - music
 
-    # FIXME: This might be first time only - investigat3e??
+    - name: Remove the python2 version of eyeD3 installed by abcde
+      become: true
+      become_method: sudo
+      pacman:
+        name: eyeD3
+        state: absent
+
+    - name: Now lets install/upgrade the python3 version of eyeD3 from pip. Ideally should make an abcde virtualenv.
+      become: true
+      become_method: sudo
+      pip:
+        name: eyeD3
+        state: latest
+      tags:
+        - music
+
+    # FIXME: This might be first time only - investigate??
     # - name: Start MPD user service
     #   # wiki.archlinux.org/index.php/Music_Player_Daemon#Autostart_with_systemd
     #   # https://wiki.archlinux.org/index.php/Systemd/User

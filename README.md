@@ -17,6 +17,7 @@ Ansible allows you to run specific parts of a playbook by using `--tags
 
 * `repos`: Just do the git clones of my repos.
 * `virtualenvs`: Just create my virtualenvs.
+* `music`: Just the music packages/installs.
 
 Notes
 -----
