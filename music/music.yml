@@ -26,6 +26,15 @@
       tags:
         - music
 
+    - name: Removing python3 eyeD3, since abcde installs a py2 version. Will fix this up in a later step.
+      become: true
+      become_method: sudo
+      pip:
+        name: eyeD3
+        state: absent
+      tags:
+        - music
+
     - name: Install Music packages
       # http://docs.ansible.com/ansible/become.html
       become: true
