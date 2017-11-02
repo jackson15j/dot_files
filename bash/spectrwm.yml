@@ -1,0 +1,31 @@
+---
+- name: Running the Spectrwm ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
+
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/bash/'
+
+    - name: Symlink Spectrwm (tiled window manager) config to user home directory
+      file:
+        src: '{{base_path}}.spectrwm.conf'
+        dest: ~/.spectrwm.conf
+        state: link
+        force: yes
+
+    - name: Install Spectrwm packages and dependencies
+      # https://github.com/conformal/spectrwm#readme
+      # https://wiki.archlinux.org/index.php/Spectrwm
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - spectrwm
+        - xterm
+        - xlockmore
+        - xscreensaver
