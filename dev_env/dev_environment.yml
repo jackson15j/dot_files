@@ -106,6 +106,10 @@
       with_items:
         - {repo: 'git@github.com:emacsmirror/excorporate.git', dest:
           '~/github_repos/excorporate/'}
+        - {repo: 'git@github.com:mopemope/meghanada-server.git', dest:
+          '~/github_repos/meghanada-server/'}
+        - {repo: 'git@github.com:vermiculus/magithub.git', dest:
+          '~/github_repos/magithub/'}
       tags:
         - repos
 
