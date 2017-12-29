@@ -94,6 +94,8 @@
           '~/github_repos/reddit-mode/'}
         - {repo: 'git@github.com:jackson15j/android_test.git', dest:
           '~/github_repos/android_test/'}
+        - {repo: 'git@github.com:jackson15j/volumio-plugins.git', dest:
+          '~/github_repos/volumio-plugins/'}
       tags:
         - repos
 
