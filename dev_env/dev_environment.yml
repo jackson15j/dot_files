@@ -66,7 +66,7 @@
         - rabbitmq
         - docker-compose
 
-    - name: Install my github repos
+    - name: Install my github repos...
       # Need to out of band, sort out the ssh keys to access github.
       git:
         repo: "{{item.repo}}"
@@ -86,39 +86,80 @@
           '~/github_repos/cpp_random_projects_for_learning/'}
         - {repo: 'git@github.com:jackson15j/unittest_helloworld.git', dest:
           '~/github_repos/unittest_helloworld/'}
-        - {repo: 'git@github.com:jackson15j/docker-tox-pyenv-runner.git', dest:
-          '~/github_repos/docker-tox-pyenv-runner/'}
-        - {repo: 'git@github.com:jackson15j/GoldenCheetah.git', dest:
-          '~/github_repos/GoldenCheetah/'}
-        - {repo: 'git@github.com:jackson15j/reddit-mode.git', dest:
-          '~/github_repos/reddit-mode/'}
         - {repo: 'git@github.com:jackson15j/android_test.git', dest:
           '~/github_repos/android_test/'}
-        - {repo: 'git@github.com:jackson15j/volumio-plugins.git', dest:
-          '~/github_repos/volumio-plugins/'}
       tags:
         - repos
 
-    - name: Install Github repos I have not yet forked.
+    - name: Set my github repos to have my personal github author details...
+      shell: |
+        for x in ~/github_repos/*;
+        do [ -d $x ] &&
+        cd "$x" &&
+        git config user.name "Craig Astill" &&
+        git config user.email "craig.astill@gmail.com";
+        done;
+      tags:
+        - repos
+
+    - name: Install Github repos I have/not forked...
       git:
         repo: "{{item.repo}}"
         dest: "{{item.dest}}"
         accept_hostkey: yes
         update: no
       with_items:
-        - {repo: 'git@github.com:emacsmirror/excorporate.git', dest:
-          '~/github_repos/excorporate/'}
-        - {repo: 'git@github.com:mopemope/meghanada-server.git', dest:
-          '~/github_repos/meghanada-server/'}
-        - {repo: 'git@github.com:vermiculus/magithub.git', dest:
-          '~/github_repos/magithub/'}
+        - {
+        repo: 'git@github.com:emacsmirror/excorporate.git',
+        dest: '~/github_forks/excorporate/'}
+        - {
+        repo: 'git@github.com:mopemope/meghanada-server.git',
+        dest: '~/github_forks/meghanada-server/'}
+        - {
+        repo: 'git@github.com:death/reddit-mode.git',
+        dest: '~/github_forks/reddit-mode/'}
+        - {
+        repo: 'git@github.com:vermiculus/magithub.git',
+        dest: '~/github_forks/magithub/'}
+        - {
+        repo: 'git@github.com:volumio/volumio-plugins.git',
+        dest: '~/github_forks/volumio-plugins/'}
+        - {
+        repo: 'git@github.com:Koutch/Cinnamon-sound-with-apps-volume.git',
+        dest: '~/github_forks/Cinnamon-sound-with-apps-volume/'}
+        - {
+        repo: 'git@github.com:cscutcher/docker-tox-pyenv-runner.git',
+        dest: '~/github_forks/docker-tox-pyenv-runner/'}
+        - {
+        repo: 'git@github.com:GoldenCheetah/GoldenCheetah.git',
+        dest: '~/github_forks/GoldenCheetah/'}
       tags:
         - repos
+        - forks
 
-    - name: Set all github repos to have my personal github author details...
-      shell:  for x in ~/github_repos/*; do [ -d $x ] && cd "$x" && git config user.name "Craig Astill" && git config user.email "craig.astill@gmail.com"; done;
+    - name: Programmatically add what my personal fork would be as a remote "me"...
+      shell: |
+        for x in ~/github_forks/*;
+        do [ -d $x ] &&
+        cd "$x" &&
+        slug=`git remote -v | grep origin | grep push | grep -o '/.*.git'` &&
+        git remote add me git@github.com:jackson15j$slug  > /dev/null 2>&1;
+        done;
       tags:
         - repos
+        - forks
+
+    - name: Set my github forks to have my personal github author details...
+      shell: |
+        for x in ~/github_forks/*;
+        do [ -d $x ] &&
+        cd "$x" &&
+        git config user.name "Craig Astill" &&
+        git config user.email "craig.astill@gmail.com";
+        done;
+      tags:
+        - repos
+        - forks
 
 # FIXME: this is broken because I can't access folders below where ansible is
 # called.
