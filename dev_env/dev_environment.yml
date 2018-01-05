@@ -115,6 +115,11 @@
       tags:
         - repos
 
+    - name: Set all github repos to have my personal github author details...
+      shell:  for x in ~/github_repos/*; do [ -d $x ] && cd "$x" && git config user.name "Craig Astill" && git config user.email "craig.astill@gmail.com"; done;
+      tags:
+        - repos
+
 # FIXME: this is broken because I can't access folders below where ansible is
 # called.
 #
