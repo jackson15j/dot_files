@@ -1,5 +1,5 @@
 ---
-- name: Running the Music ansible playbook...
+- name: Running the Bash ansible playbook...
   hosts: localhost
   tasks:
     - name: Get repo base path
