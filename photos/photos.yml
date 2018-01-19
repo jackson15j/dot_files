@@ -17,6 +17,7 @@
         state: latest
       with_items:
         - digikam  # https://www.digikam.org/about/features/
+        - bt747  # getting files from GPS Logger's, https://wiki.openstreetmap.org/wiki/Holux_RCV-3000
 
     - name: Install AUR packages
       become: true
@@ -24,3 +25,9 @@
       aur: name="{{item}}" tool=yaourt
       with_items:
         - darktable  # https://www.darktable.org
+
+# TODO:
+# * add following to this repo: `/root/.config/bt747/bt747settings.pdb`.
+# * deploy the bt747 config file via ansible.
+# * Write script to run `sudo bt747`, for port access. This should chmod/chown
+#   all logger/gpx files on close, for non-root access.
