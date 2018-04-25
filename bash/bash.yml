@@ -41,4 +41,5 @@
         name: "{{ item }}"
         state: latest
       with_items:
+        - python-pip
         - tmux
