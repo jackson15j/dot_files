@@ -9,6 +9,12 @@
     - set_fact:
         base_path: '{{repo_base_path.stdout}}/bash/'
 
+    - name: Set global git user name
+      command: git config --global user.name "Craig Astill"
+
+    - name: Set global git user email
+      command: git config --global user.email "craigastill@gmail.com"
+
     - name: Symlink Tmux config to user home directory
       file:
         src: '{{base_path}}.tmux.conf'  # https://github.com/ansible/ansible/issues/5344
