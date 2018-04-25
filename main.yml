@@ -2,6 +2,7 @@
 - include: update_pacman.yml
 - include: bash/bash.yml
 #- include: bash/spectrwm.yml  # Experimenting with windows managers.
+- include: web/web.yml
 - include: music/music.yml
 - include: photos/photos.yml
 - include: dev_env/docker.yml

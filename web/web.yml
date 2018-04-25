@@ -1,0 +1,21 @@
+---
+- name: Running the Web ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
+
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/web/'
+
+    # - name: Get PGP key for discord's libc dependency
+    #   # https://aur.archlinux.org/packages/libc%2B%2B/
+    #   command: gpg --recv-keys 0FC3042E345AD05D
+
+    - name: Install AUR packages
+      aur: name="{{item}}" tool=yaourt
+      with_items:
+        - opera
+        - opera-ffmpeg-codecs
+        - discord
