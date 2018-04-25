@@ -43,3 +43,12 @@
       with_items:
         - python-pip
         - tmux
+        - syncthing # https://wiki.archlinux.org/index.php/Syncthing
+
+    - name: Enable SyncThing service
+      # https://docs.ansible.com/ansible/latest/modules/systemd_module.html
+      systemd:
+        name: syncthing.service
+        enabled: True
+        state: started
+        user: yes
