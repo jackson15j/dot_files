@@ -16,7 +16,6 @@
         name: "{{ item }}"
         state: latest
       with_items:
-        - digikam  # https://www.digikam.org/about/features/
         - bt747  # getting files from GPS Logger's, https://wiki.openstreetmap.org/wiki/Holux_RCV-3000
 
     - name: Install AUR packages
