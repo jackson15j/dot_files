@@ -47,6 +47,7 @@
         - mpd
         - abcde
         # TODO: double check mpd/abcde dependencies for flac/albumart...
+        - cantata
       tags:
         - music
 
