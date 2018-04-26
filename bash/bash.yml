@@ -44,6 +44,7 @@
         - python-pip
         - tmux
         - syncthing # https://wiki.archlinux.org/index.php/Syncthing
+        - powertop  # diagnose battery/power management issues.
 
     - name: Enable SyncThing service
       # https://docs.ansible.com/ansible/latest/modules/systemd_module.html
