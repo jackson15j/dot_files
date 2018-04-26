@@ -26,6 +26,8 @@
         state: latest
       with_items:
         - make
+        - pandoc  # document file conversions.
+        - texlive-core  # PDF/Latex creation from pandoc.
 
     - name: Install system-wide python packages
       become: true
