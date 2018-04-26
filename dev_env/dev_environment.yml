@@ -51,8 +51,8 @@
         state: latest
       with_items:
         - cmake
-        # - gcc
-        - gcc-multilib  # build 32/64-bit packages. Conflicts with `gcc`.
+        - gcc
+        # - gcc-multilib  # build 32/64-bit packages. Conflicts with `gcc`.
         - gdb
         - clang
 
