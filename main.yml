@@ -1,6 +1,7 @@
 ---
 - include: update_pacman.yml
 - include: bash/bash.yml
+- include: dell/dell.yml  # TODO: do a system check for my xps or not.
 #- include: bash/spectrwm.yml  # Experimenting with windows managers.
 - include: web/web.yml
 - include: music/music.yml
