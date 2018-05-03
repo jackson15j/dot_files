@@ -1,0 +1,34 @@
+---
+- name: Running the Video ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
+      tags:
+        - video
+
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/video/'
+      tags:
+        - video
+
+    - name: Install Video packages
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - libdvdcss
+        - libdvdread
+        - libdvdnav
+        - mpv  # better version of mplayer.
+        # `dvdbackup -i /dev/cdrom -M -o /output/path/if/default/guess/is/rubbish/`
+        - dvdbackup  # https://wiki.archlinux.org/index.php/Dvdbackup
+        # https://wiki.archlinux.org/index.php/FFmpeg
+        # Encode a folder's *.VOB files to H264:
+        # Linux (software): `for i in *.VOB; do nice ffmpeg -i $i -c:v libx264 -preset veryslow ${i%.*}_vs_264.mp4; done`
+        # Windows (GPU=V.Fast!!): `for %i in (*.VOB) do ffmpeg.exe -i %i -c:v # h264_nvenc -preset slow %~ni_s_h264_nvenc.mp4`
+      tags:
+        - video
