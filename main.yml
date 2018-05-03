@@ -1,12 +1,12 @@
 ---
-- include: update_pacman.yml
-- include: bash/bash.yml
-- include: dell/dell.yml  # TODO: do a system check for my xps or not.
-#- include: bash/spectrwm.yml  # Experimenting with windows managers.
-- include: web/web.yml
-- include: music/music.yml
-- include: video/video.yml
-- include: photos/photos.yml
-- include: dev_env/docker.yml
-- include: dev_env/dev_environment.yml
-- include: dev_env/virtualenvs/landslide.yml
+- import_playbook: update_pacman.yml
+- import_playbook: bash/bash.yml
+- import_playbook: dell/dell.yml  # TODO: do a system check for my xps or not.
+#- import_playbook: bash/spectrwm.yml  # Experimenting with windows managers.
+- import_playbook: web/web.yml
+- import_playbook: music/music.yml
+- import_playbook: video/video.yml
+- import_playbook: photos/photos.yml
+- import_playbook: dev_env/docker.yml
+- import_playbook: dev_env/dev_environment.yml
+- import_playbook: dev_env/virtualenvs/landslide.yml
