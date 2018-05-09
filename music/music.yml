@@ -57,6 +57,8 @@
       pacman:
         name: eyeD3
         state: absent
+      tags:
+        - music
 
     - name: Now lets install/upgrade the python3 version of eyeD3 from pip. Ideally should make an abcde virtualenv.
       become: true
@@ -67,8 +69,19 @@
       tags:
         - music
 
-    # FIXME: This might be first time only - investigate??
-    # - name: Start MPD user service
-    #   # wiki.archlinux.org/index.php/Music_Player_Daemon#Autostart_with_systemd
-    #   # https://wiki.archlinux.org/index.php/Systemd/User
-    #   shell: systemctl --user start mpd
+    - name: Enable mpd service
+      # https://docs.ansible.com/ansible/latest/modules/systemd_module.html
+      systemd:
+        name: mpd.service
+        enabled: True
+        state: started
+        user: yes
+      tags:
+        - music
+
+    - name: Create ~/Music/.mpd/playlists
+      file:
+        path: ~/Music/.mpd/playlists
+        state: directory
+      tags:
+        - music
