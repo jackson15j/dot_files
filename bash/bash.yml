@@ -50,6 +50,9 @@
         # `/etc/samba/smb.conf`.
         - samba  # https://wiki.archlinux.org/index.php/samba.
         - rdesktop
+        - gvfs-afc  # IOS support in filemanger:
+          # https://wiki.archlinux.org/index.php/IOS
+        - ifuse
 
     - name: Enable SyncThing service
       # https://docs.ansible.com/ansible/latest/modules/systemd_module.html
@@ -58,3 +61,8 @@
         enabled: True
         state: started
         user: yes
+
+    - name: Create ~/Downloads/iphone for later manual ifuse mounting when plugged in.
+      file:
+        path: ~/Downloads/iphone
+        state: directory
