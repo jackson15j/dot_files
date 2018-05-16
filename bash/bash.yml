@@ -52,7 +52,8 @@
         - rdesktop
         - gvfs-afc  # IOS support in filemanger:
           # https://wiki.archlinux.org/index.php/IOS
-        - ifuse
+        - ifuse  # IOS mounting support.
+        - adobe-source-han-sans-jp-fonts  # Japanese font.
 
     - name: Enable SyncThing service
       # https://docs.ansible.com/ansible/latest/modules/systemd_module.html
