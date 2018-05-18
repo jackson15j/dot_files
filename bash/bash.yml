@@ -50,6 +50,7 @@
         # `/etc/samba/smb.conf`.
         - samba  # https://wiki.archlinux.org/index.php/samba.
         - rdesktop
+        - tigervnc  # binaries are `vncviewer`, `vncserver`, etc...
         - gvfs-afc  # IOS support in filemanger:
           # https://wiki.archlinux.org/index.php/IOS
         - ifuse  # IOS mounting support.
