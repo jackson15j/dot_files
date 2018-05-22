@@ -18,5 +18,40 @@
       with_items:
         - xf86-input-synaptics
 
-    # TODO: custom `/etc/systemd/logind.conf` for `hybrid-sleep`/`hibernate`.
-    # See: https://wiki.archlinux.org/index.php/Power_management#ACPI_events.
+    - name: Copy suspend-to-hibernate.service script to /etc/systemd/system/
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{base_path}}suspend-to-hibernate.service'
+        dest: /etc/systemd/system/
+        owner: 'root'
+        group: 'root'
+        mode: 0755
+
+    - name: Enable suspend-to-hibernate service
+      become: true
+      become_method: sudo
+      systemd:
+        name: suspend-to-hibernate.service
+        enabled: True
+        state: started
+        # user: yes
+
+    - name: Copy logind.conf script to /etc/systemd/
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{base_path}}logind.conf'
+        dest: /etc/systemd/
+        owner: 'root'
+        group: 'root'
+        mode: 0755
+
+    - name: Restart logind service to enable suspend with delayed hibernate
+      # See: https://wiki.archlinux.org/index.php/Power_management#ACPI_events.
+      become: true
+      become_method: sudo
+      systemd:
+        name: systemd-logind.service
+        enabled: True
+        state: restarted
