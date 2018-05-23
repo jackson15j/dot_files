@@ -55,3 +55,8 @@
         name: systemd-logind.service
         enabled: True
         state: restarted
+
+    # TODO: script printer updating/configuration steps:
+    # https://bbs.archlinux.org/viewtopic.php?id=201719
+    # * Plugin update with: `hp-plugin`.
+    # * Printer config with: `sudo hp-setup -i`.
