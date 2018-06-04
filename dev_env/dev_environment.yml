@@ -67,6 +67,8 @@
       with_items:
         - mono  # https://wiki.archlinux.org/index.php/Mono
         - mono-tools  # docs/testing
+        - dotnet-sdk  # https://wiki.archlinux.org/index.php/.NET_Core
+        - dotnet-runtime
 
     - name: Install random stuff I am toying with, but are not core packages
       become: true
