@@ -26,8 +26,9 @@
         state: latest
       with_items:
         - make
-        - pandoc  # document file conversions.
-        - texlive-core  # PDF/Latex creation from pandoc. https://wiki.archlinux.org/index.php/TeX_Live
+        #  Removed for: https://hub.docker.com/r/jagregory/pandoc/
+        # - pandoc  # document file conversions.
+        # - texlive-core  # PDF/Latex creation from pandoc. https://wiki.archlinux.org/index.php/TeX_Live
 
     - name: Install system-wide python packages
       become: true
