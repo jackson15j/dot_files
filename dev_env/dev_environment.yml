@@ -29,6 +29,7 @@
         #  Removed for: https://hub.docker.com/r/jagregory/pandoc/
         # - pandoc  # document file conversions.
         # - texlive-core  # PDF/Latex creation from pandoc. https://wiki.archlinux.org/index.php/TeX_Live
+        - ruby  # docs.travis-ci.com/user/encryption-keys/
 
     - name: Install system-wide python packages
       become: true
@@ -180,6 +181,12 @@
       tags:
         - repos
         - forks
+
+    - name: Install Travis CLI for the occassional CI task...
+      # docs.travis-ci.com/user/encryption-keys/
+      gem:
+        name: travis
+        state: latest
 
 # FIXME: this is broken because I can't access folders below where ansible is
 # called.
