@@ -15,12 +15,15 @@
     - name: Set global git user email
       command: git config --global user.email "craigastill@gmail.com"
 
-    - name: Symlink Tmux config to user home directory
+    - name: Symlink config files to user home directory
       file:
-        src: '{{base_path}}.tmux.conf'  # https://github.com/ansible/ansible/issues/5344
-        dest: ~/.tmux.conf
+        src: '{{base_path}}{{item}}'
+        dest: '~/{{item}}'
         state: link
-        force: yes  # See: https://github.com/ansible/ansible/issues/7627
+        force: yes
+      with_items:
+        - .bashrc
+        - .tmux.conf
 
     - name: Copy tmux_share script to /usr/local/bin for guest access.
       become: true
