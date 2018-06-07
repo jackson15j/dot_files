@@ -96,6 +96,8 @@
           '~/github_repos/dot_emacs/'}
         - {repo: 'git@github.com:jackson15j/dot_files.git', dest:
           '~/github_repos/dot_files/'}
+        - {repo: 'git@github.com:jackson15j/cv.git', dest:
+          '~/github_repos/cv/'}
         - {repo: 'git@github.com:jackson15j/jackson15j.github.io.git', dest:
           '~/github_repos/jackson15j.github.io/'}
         - {repo: 'git@github.com:jackson15j/cpp_random_projects_for_learning.git', dest:
