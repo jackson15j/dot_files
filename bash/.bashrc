@@ -8,7 +8,7 @@
 alias ls='ls --color=auto'
 alias pacman='pacman --color auto'
 
-PS1='[\u@\h \W]\$ '
+source ~/.bash_prompt
 
 # >>> Added by cnchi installer
 BROWSER=/usr/bin/chromium

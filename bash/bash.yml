@@ -23,6 +23,7 @@
         force: yes
       with_items:
         - .bashrc
+        - .bash_prompt
         - .tmux.conf
 
     - name: Copy tmux_share script to /usr/local/bin for guest access.
