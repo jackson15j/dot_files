@@ -77,6 +77,28 @@
         group: 'root'
         mode: 0755
 
+    - name: Apply Gnome touchpad settings
+      # Gnome (Wayland) stamps over my xorg touch pad settings, so lets fix
+      # them up.
+      # FIXME: Can the xorg and Gnome settings be consolidated?
+      dconf:
+        key: "{{item.path}}"
+        value: "{{item.value}}"
+        state: present
+      with_items:
+        - {path: "/org/gnome/desktop/peripherals/touchpad/click-method",
+           value: "'areas'"}
+        - {path: "/org/gnome/desktop/peripherals/touchpad/edge-scrolling-enabled",
+           value: "false"}
+        - {path: "/org/gnome/desktop/peripherals/touchpad/natural-scroll",
+           value: "false"}
+        - {path: "/org/gnome/desktop/peripherals/touchpad/speed",
+           value: "0.9"}
+        - {path: "/org/gnome/desktop/peripherals/touchpad/tap-to-click",
+           value: "true"}
+        - {path: "/org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled",
+           value: "true"}
+
     # TODO: script printer updating/configuration steps:
     # https://bbs.archlinux.org/viewtopic.php?id=201719
     # * Plugin update with: `hp-plugin`.
