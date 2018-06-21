@@ -19,6 +19,7 @@
       with_items:
         # Was: https://wiki.archlinux.org/index.php/Touchpad_Synaptics
         # Now: https://wiki.archlinux.org/index.php/Libinput
+        # Further settings in: /etc/X11/xorg.conf.d/30-touchpad.conf.
         - xf86-input-libinput  # xf86-input-synaptics is deprecated.
         # Dell BIOS updating = Download exe to a pendrive and using the Bios
         # Flash Update at boot time (F12), since I'm legacy (instead of UEFI).
@@ -65,6 +66,16 @@
         name: systemd-logind.service
         enabled: True
         state: restarted
+
+    - name: Copy 30-touchpad.conf script to /etc/X11/xorg.conf.d/
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{base_path}}30-touchpad.conf'
+        dest: /etc/X11/xorg.conf.d/
+        owner: 'root'
+        group: 'root'
+        mode: 0755
 
     # TODO: script printer updating/configuration steps:
     # https://bbs.archlinux.org/viewtopic.php?id=201719
