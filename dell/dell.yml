@@ -93,7 +93,7 @@
         - {path: "/org/gnome/desktop/peripherals/touchpad/natural-scroll",
            value: "false"}
         - {path: "/org/gnome/desktop/peripherals/touchpad/speed",
-           value: "0.7"}
+           value: "0.6"}
         - {path: "/org/gnome/desktop/peripherals/touchpad/tap-to-click",
            value: "true"}
         - {path: "/org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled",
