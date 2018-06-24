@@ -151,6 +151,9 @@
         - {
         repo: 'git@github.com:GoldenCheetah/GoldenCheetah.git',
         dest: '~/github_forks/GoldenCheetah/'}
+        - {
+        repo: 'https://github.com/dotnet/samples.git',
+        dest: '~/github_forks/dotnet/samples/'}
       tags:
         - repos
         - forks
