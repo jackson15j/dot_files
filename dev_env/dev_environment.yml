@@ -72,6 +72,11 @@
         - dotnet-sdk  # https://wiki.archlinux.org/index.php/.NET_Core
         - dotnet-runtime
 
+    - name: Install C# AUR packages
+      aur: name="{{item}}" tool=yaourt
+      with_items:
+        - monodevelop-stable  # MonoDevelop IDE.
+
     - name: Install random stuff I am toying with, but are not core packages
       become: true
       become_method: sudo
