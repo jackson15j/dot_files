@@ -28,6 +28,9 @@
         # https://wiki.archlinux.org/index.php/Flashing_BIOS_from_Linux#fwupd
         # https://fwupd.org/lvfs/device/7ceaf7a8-0611-4480-9e30-64d8de420c7c
         - fwupd
+        # FIXME: need to make the following permanent for my Tandberg webcam:
+        #  v4l2-ctl --set-fmt-video=width=1280,height=720,pixelformat=MJPG
+        - v4l2ucp  # v4l configuration for webcams.
 
     - name: Copy suspend-to-hibernate.service script to /etc/systemd/system/
       become: true
