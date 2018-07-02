@@ -45,6 +45,7 @@
         state: latest
       with_items:
         - mpd
+        - glyr  # Album art support for abcde
         - abcde
         # TODO: double check mpd/abcde dependencies for flac/albumart...
         - cantata
@@ -57,6 +58,14 @@
       pacman:
         name: eyeD3
         state: absent
+      tags:
+        - music
+
+    - name: Install abcde AUR depencies
+      aur: name="{{item}}" tool=yaourt
+      with_items:
+        - perl-musicbrainz-discid  # abcde dependency for MusicBrainz lookups.
+        - perl-webservice-musicbrainz  # abcde dependency for MusicBrainz lookups.
       tags:
         - music
 
@@ -78,6 +87,19 @@
         user: yes
       tags:
         - music
+
+    # - name: Create ~/Music/.mpd/
+    #   file:
+    #     path: ~/Music/.mpd/
+    #     state: directory
+
+    # - name: Touch the local ~/Music/.mpd/mpd.log file
+    #   # https://docs.ansible.com/ansible/latest/modules/file_module.html#file-module
+    #   # Or a command example:
+    #   # https://stackoverflow.com/questions/28347717/how-to-create-an-empty-file-with-ansible#34929776
+    #   file:
+    #     path: ~/Music/.mpd/mpd.log
+    #     state: touch
 
     - name: Create ~/Music/.mpd/playlists
       file:
