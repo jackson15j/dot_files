@@ -102,6 +102,17 @@
         - {path: "/org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled",
            value: "true"}
 
+    - name: Copy 90-override.conf script to /etc/sysctl.d/, for an inotify fix
+      # https://docs.syncthing.net/users/faq.html#inotify-limits
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{base_path}}90-override.conf'
+        dest: /etc/sysctl.d/
+        owner: 'root'
+        group: 'root'
+        mode: 0755
+
     # TODO: script printer updating/configuration steps:
     # https://bbs.archlinux.org/viewtopic.php?id=201719
     # * Plugin update with: `hp-plugin`.
