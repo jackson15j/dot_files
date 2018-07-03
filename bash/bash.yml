@@ -50,6 +50,7 @@
         - syncthing  # https://wiki.archlinux.org/index.php/Syncthing.
         - powertop  # diagnose battery/power management issues.
         - jnettop  # A top-like console network traffic visualizer.
+        - iptraf-ng  # network traffic visualizer with wireshark scroll logs.
         # TODO scripting of grabbing a default smb config from somewhere to
         # `/etc/samba/smb.conf`.
         - samba  # https://wiki.archlinux.org/index.php/samba.
