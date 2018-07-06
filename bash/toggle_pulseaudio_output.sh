@@ -22,10 +22,12 @@
 # 0
 # ```
 #
-# * Identify my Volumio connected speakers as an output sink:
+# * Identify my Volumio connected speakers as an output sink, but limit to
+#   first match!! (I sometimes have ethernet and wifi connected at the same
+#   time.
 #
 # ```bash
-# $ pactl list short sinks | grep volumio-office | awk '{print $ 1}'
+# $ pactl list short sinks | grep -m 1 volumio-office | awk '{print $ 1}'
 # 25
 # ```
 #
@@ -40,7 +42,7 @@
 
 INPUT=$(pactl list short sink-inputs | awk '{print $1}')
 LAPTOP_SPEAKERS=$(pactl list short sinks | grep analog-stereo | awk '{print $ 1}')
-VOLUMIO_SPEAKERS=$(pactl list short sinks | grep volumio-office | awk '{print $ 1}')
+VOLUMIO_SPEAKERS=$(pactl list short sinks | grep -m1 volumio-office | awk '{print $ 1}')
 CURRENT_SPEAKERS=$(pactl list short sinks | grep RUNNING | awk '{print $ 1}')
 
 
