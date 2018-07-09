@@ -20,3 +20,6 @@ export PATH=$PATH:$(ruby -e 'print Gem.user_dir')/bin
 # >>> Added by cnchi installer
 BROWSER=/usr/bin/chromium
 EDITOR=/usr/bin/nano
+
+# added by travis gem
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
