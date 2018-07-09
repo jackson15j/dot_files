@@ -47,7 +47,9 @@
         - mpd
         - glyr  # Album art support for abcde
         - abcde
-        # TODO: double check mpd/abcde dependencies for flac/albumart...
+        - picard  # Musicbrainz tagger. Use to upload discid's if missing.
+        - python-discid  # picard dependency for cd lookups. Haven't been able
+                         # to get this to work from a virtualenv yet.
         - cantata
       tags:
         - music
