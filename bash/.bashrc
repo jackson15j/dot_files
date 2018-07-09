@@ -8,6 +8,10 @@
 alias ls='ls --color=auto'
 alias pacman='pacman --color auto'
 
+## virtualenv
+[ -d $HOME/virtual_envs ] && export WORKON_HOME=$HOME/virt_envs
+[ -f /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
+
 source ~/.bash_prompt
 
 # https://wiki.archlinux.org/index.php/Ruby#Setup
