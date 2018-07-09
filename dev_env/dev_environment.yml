@@ -198,6 +198,20 @@
         name: travis
         state: latest
 
+    - name: Install Gitlab repos I have/not forked...
+      git:
+        repo: "{{item.repo}}"
+        dest: "{{item.dest}}"
+        accept_hostkey: yes
+        update: no
+      with_items:
+        - {
+        repo: 'git@gitlab.com:mikeyjkmo/nameko-payee-notifier.git',
+        dest: '~/gitlab_forks/nameko-payee-notifier/'}
+      tags:
+        - repos
+        - forks
+
 # FIXME: this is broken because I can't access folders below where ansible is
 # called.
 #
