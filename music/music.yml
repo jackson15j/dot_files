@@ -27,12 +27,6 @@
       tags:
         - music
 
-
-    # - name: Create ~/Music/.mpd/
-    #   file:
-    #     path: ~/Music/.mpd/
-    #     state: directory
-
     # - name: Touch the local ~/Music/.mpd/mpd.log file
     #   # https://docs.ansible.com/ansible/latest/modules/file_module.html#file-module
     #   # Or a command example:
@@ -41,10 +35,10 @@
     #     path: ~/Music/.mpd/mpd.log
     #     state: touch
 
-    - name: Symlink MPD playlists to ~/Music/.mpd/playlists
+    - name: Symlink .mpd directory to ~/Music/.mpd/
       file:
-        src: '{{base_path}}.mpd/playlists'
-        dest: ~/Music/.mpd/playlists
+        src: '{{base_path}}.mpd'
+        dest: ~/Music/.mpd
         state: link
         force: yes
       tags:

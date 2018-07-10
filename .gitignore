@@ -1,1 +1,6 @@
+*.db
+*.log
+*.pid
 *.retry
+*.sql
+*.state
