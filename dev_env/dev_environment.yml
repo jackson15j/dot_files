@@ -157,8 +157,11 @@
         repo: 'git@github.com:GoldenCheetah/GoldenCheetah.git',
         dest: '~/github_forks/GoldenCheetah/'}
         - {
-        repo: 'https://github.com/dotnet/samples.git',
+        repo: 'git@github.com:dotnet/samples.git',
         dest: '~/github_forks/dotnet/samples/'}
+        - {
+        repo: 'git@github.com:pft/mingus.git',
+        dest: '~/github_forks/mingus/'}
       tags:
         - repos
         - forks
@@ -171,7 +174,7 @@
         slug=`git remote -v | grep origin | grep push | grep -o '/.*.git'` &&
         my_fork="git@github.com:jackson15j$slug" &&
         echo "-- Adding the remote: $my_fork, in: $x ..." &&
-        git remote add me my_fork;
+        git remote add me $my_fork;
         # `git remote add` will fail on existing remotes, so using the
         # following `true` command to _"reset"_ the exit code.
         true;
