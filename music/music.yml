@@ -27,6 +27,20 @@
       tags:
         - music
 
+
+    # - name: Create ~/Music/.mpd/
+    #   file:
+    #     path: ~/Music/.mpd/
+    #     state: directory
+
+    # - name: Touch the local ~/Music/.mpd/mpd.log file
+    #   # https://docs.ansible.com/ansible/latest/modules/file_module.html#file-module
+    #   # Or a command example:
+    #   # https://stackoverflow.com/questions/28347717/how-to-create-an-empty-file-with-ansible#34929776
+    #   file:
+    #     path: ~/Music/.mpd/mpd.log
+    #     state: touch
+
     - name: Symlink MPD playlists to ~/Music/.mpd/playlists
       file:
         src: '{{base_path}}.mpd/playlists'
@@ -99,16 +113,3 @@
         user: yes
       tags:
         - music
-
-    # - name: Create ~/Music/.mpd/
-    #   file:
-    #     path: ~/Music/.mpd/
-    #     state: directory
-
-    # - name: Touch the local ~/Music/.mpd/mpd.log file
-    #   # https://docs.ansible.com/ansible/latest/modules/file_module.html#file-module
-    #   # Or a command example:
-    #   # https://stackoverflow.com/questions/28347717/how-to-create-an-empty-file-with-ansible#34929776
-    #   file:
-    #     path: ~/Music/.mpd/mpd.log
-    #     state: touch
