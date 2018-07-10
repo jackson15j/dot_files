@@ -23,6 +23,16 @@
       with_items:
         - .mpdconf
         - .abcde.conf
+        - .mpd
+      tags:
+        - music
+
+    - name: Symlink MPD playlists to ~/Music/.mpd/playlists
+      file:
+        src: '{{base_path}}.mpd/playlists'
+        dest: ~/Music/.mpd/playlists
+        state: link
+        force: yes
       tags:
         - music
 
@@ -102,10 +112,3 @@
     #   file:
     #     path: ~/Music/.mpd/mpd.log
     #     state: touch
-
-    - name: Create ~/Music/.mpd/playlists
-      file:
-        path: ~/Music/.mpd/playlists
-        state: directory
-      tags:
-        - music
