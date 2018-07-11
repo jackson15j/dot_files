@@ -3,8 +3,8 @@
 <channel name="xfce4-panel" version="1.0">
   <property name="panels" type="uint" value="1">
     <property name="panel-0" type="empty">
-      <property name="position" type="string" value="p=8;x=720;y=884"/>
-      <property name="length" type="uint" value="100"/>
+      <property name="position" type="string" value="p=4;x=1268;y=1065"/>
+      <property name="length" type="uint" value="1"/>
       <property name="position-locked" type="bool" value="true"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="8"/>
@@ -16,7 +16,6 @@
         <value type="int" value="6"/>
         <value type="int" value="12"/>
         <value type="int" value="19"/>
-        <value type="int" value="20"/>
         <value type="int" value="16"/>
         <value type="int" value="5"/>
         <value type="int" value="2"/>
@@ -56,6 +55,8 @@
         <value type="string" value="pnmixer"/>
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="task manager"/>
+        <value type="string" value="discord"/>
+        <value type="string" value="steam"/>
         <value type="string" value="orage"/>
         <value type="string" value="xfce terminal"/>
         <value type="string" value="pamac-tray"/>
@@ -71,6 +72,7 @@
     </property>
     <property name="plugin-7" type="string" value="separator">
       <property name="expand" type="bool" value="true"/>
+      <property name="style" type="uint" value="1"/>
     </property>
     <property name="plugin-9" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
@@ -85,7 +87,6 @@
     <property name="plugin-14" type="string" value="xfce4-mpc-plugin"/>
     <property name="plugin-16" type="string" value="power-manager-plugin"/>
     <property name="plugin-19" type="string" value="weather"/>
-    <property name="plugin-20" type="string" value="wavelan"/>
   </property>
   <property name="configver" type="int" value="2"/>
 </channel>

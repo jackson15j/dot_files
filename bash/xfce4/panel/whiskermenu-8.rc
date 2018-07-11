@@ -1,5 +1,5 @@
 favorites=exo-terminal-emulator.desktop,exo-file-manager.desktop,exo-web-browser.desktop,exo-mail-reader.desktop,pamac-manager.desktop
-recent=xfce-settings-manager.desktop,opera.desktop,exo-file-manager.desktop,cantata.desktop,xfce4-settings-editor.desktop,org.gnome.Terminal.desktop,exo-terminal-emulator.desktop
+recent=steam-native.desktop,opera.desktop,xfce-settings-manager.desktop,discord.desktop,exo-file-manager.desktop,cantata.desktop,xfce4-settings-editor.desktop,org.gnome.Terminal.desktop,exo-terminal-emulator.desktop
 button-title=Applications
 button-icon=/usr/share/icons/xfce4-whiskermenu.svg
 button-single-row=false
