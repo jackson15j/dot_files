@@ -3,6 +3,7 @@
 - import_playbook: bash/bash.yml
 - import_playbook: dell/dell.yml  # TODO: do a system check for my xps or not.
 #- import_playbook: bash/spectrwm.yml  # Experimenting with windows managers.
+- import_playbook: bash/xfce4.yml  # Experimenting with windows managers.
 - import_playbook: web/web.yml
 - import_playbook: music/music.yml
 - import_playbook: video/video.yml
