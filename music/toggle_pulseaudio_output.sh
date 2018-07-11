@@ -63,6 +63,11 @@ CURRENT_SPEAKERS=$(pactl list short sinks | grep RUNNING | awk '{print $ 1}')
 #     pactl move-sink-input $INPUT $LAPTOP_SPEAKERS
 # fi
 
+if [ -z $INPUT ]
+then
+    echo "Cannot programmatically switch sources if no music is play, since there is no input sink!"
+    exit 1
+fi
 
 case "$CURRENT_SPEAKERS" in
     $LAPTOP_SPEAKERS)
@@ -74,7 +79,22 @@ case "$CURRENT_SPEAKERS" in
         pactl move-sink-input $INPUT $LAPTOP_SPEAKERS
         ;;
     *)
+        echo "-- Debug: Input before:"
+        echo -e "$(pactl list short sink-inputs)"
+        echo "-- Debug: Outputs before:"
+        echo -e "$(pactl list short sinks)"
+        echo "-- INPUT: $INPUT"
+        echo "-- CURRENT_SPEAKERS: $CURRENT_SPEAKERS"
+        echo "-- LAPTOP_SPEAKERS: $LAPTOP_SPEAKERS"
+        echo "-- VOLUMIO_SPEAKERS: $VOLUMIO_SPEAKERS"
+
         echo "Unexpected output sink. Setting to Laptop Speakers..."
         pactl move-sink-input $INPUT $LAPTOP_SPEAKERS
+
+        echo
+        echo "-- Debug: Input after:"
+        echo -e "$(pactl list short sink-inputs)"
+        echo "-- Debug: Outputs after:"
+        echo -e "$(pactl list short sinks)"
         exit 0
 esac
