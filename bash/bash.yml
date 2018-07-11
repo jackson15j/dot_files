@@ -61,6 +61,48 @@
         - ifuse  # IOS mounting support.
         - adobe-source-han-sans-jp-fonts  # Japanese font.
 
+    - name: Explicitly remove tracker and all depenant packages
+      # Removing `tracker` since I don't use it's features or most of the
+      # programs that use it. Also tired of the noise in `journalctl` when I'm
+      # investigating other issues.
+      #
+      # Using `Command` since the pacman module does not allow `-c` in:
+      # `pacman -Rc <blah>`.
+      #
+      # For reference:
+      #
+      # $ sudo pacman -R tracker
+      #   checking dependencies...
+      #   error: failed to prepare transaction (could not satisfy dependencies)
+      #   :: brasero: removing tracker breaks dependency 'tracker'
+      #   :: gnome-online-miners: removing tracker breaks dependency 'tracker'
+      #   :: grilo-plugins: removing tracker breaks dependency 'tracker'
+      #   :: nautilus: removing tracker breaks dependency 'tracker'
+      #   :: tracker-miners: removing tracker breaks dependency 'tracker'
+      #
+      # $ sudo pacman -Rc tracker
+      # checking dependencies...
+      # :: grilo optionally requires grilo-plugins: Plugins for grilo
+      # :: totem optionally requires grilo-plugins: Media discovery
+      #
+      # Packages (11) antergos-gnome-meta-1.1-1  brasero-3.12.2-2
+      # gnome-documents-3.28.1-1 gnome-music-1:3.28.2.1-1
+      # gnome-online-miners-3.26.0-1 gnome-photos-3.28.0-3
+      # gnome-tweaks-3.28.1-1 grilo-plugins-0.3.5+12+g7ecf4b2-1
+      # nautilus-3.28.1-1 tracker-miners-2.0.5-1 tracker-2.0.4-1
+      #
+      # Total Removed Size:  50.47 MiB
+      #
+      # :: Do you want to remove these packages? [Y/n]
+      become: true
+      become_method: sudo
+      command: pacman -Rc --noconfirm tracker
+      tags:
+        - remove
+
+
+
+
     - name: Enable SyncThing service
       # https://docs.ansible.com/ansible/latest/modules/systemd_module.html
       systemd:
