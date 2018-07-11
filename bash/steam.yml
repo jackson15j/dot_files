@@ -1,0 +1,40 @@
+---
+- name: Running the Steam ansible playbook...
+  hosts: localhost
+  tasks:
+    - set_fact:
+        base_path: '~/.local/share/Steam/steamapps/common/Torchlight II/'
+
+    - name: Check if Torchlight 2 is installed
+      stat:
+        path: '{{base_path}}ModLauncher.bin.x86_64'
+      register: torchlight2
+
+    - name: Move Torchlight 2's Mod Manager in prep for game executable symlink
+      # Torchlight 2's Mod manager is broken due to issues with the systems
+      # `/usr/lib/libfontconfig.so.1` (most likely being to new). Working
+      # around the problem by symlinking the game executable to the mod
+      # manager, which Steam is hardcoded to run:
+      #
+      # * https://steamcommunity.com/app/200710/discussions/0/1694917906654719532/
+      #
+      # NOTE: you can fix the game from not working outside of steam with the
+      # following one-liner, but then you want get time tracking or cloud save
+      # syncing by Steam:
+      #
+      # cd ~/.local/share/Steam/steamapps/common/Torchlight\ II
+      # echo 200710 > steam_appid.txt
+      #
+      # * Reference: https://steamdb.info/app/200710/
+      copy:
+        src: '{{base_path}}ModLauncher.bin.x86_64'
+        dest: '{{base_path}}ModLauncher.bin.x86_64.bak'
+      when: torchlight2.stat.exists and torchlight2.stat.islnk == False
+
+    - name: Symlink Torchlight 2's executable for Steam to call directly
+      file:
+        src: '{{base_path}}Torchlight2.bin.x86_64'
+        dest: '{{base_path}}ModLauncher.bin.x86_64'
+        state: link
+        force: yes
+      when: torchlight2.stat.exists and torchlight2.stat.islnk == False
