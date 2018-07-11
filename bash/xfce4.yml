@@ -27,3 +27,11 @@
         - xfce4
         - xfce4-goodies
         - blueman  # https://github.com/blueman-project/blueman, BT management.
+        - redshift # https://wiki.archlinux.org/index.php/Redshift
+
+    - name: Enable RedShift night temperature service
+      systemd:
+        name: redshift-gtk.service
+        enabled: True
+        state: started
+        user: yes
