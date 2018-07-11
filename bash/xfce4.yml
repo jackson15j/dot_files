@@ -26,3 +26,4 @@
       with_items:
         - xfce4
         - xfce4-goodies
+        - blueman  # https://github.com/blueman-project/blueman, BT management.
