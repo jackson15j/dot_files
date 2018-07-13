@@ -41,6 +41,7 @@
       <property name="&lt;Primary&gt;&lt;Alt&gt;t" type="string" value="xfce4-terminal --drop-down"/>
       <property name="&lt;Super&gt;space" type="string" value="xfce4-popup-whiskermenu"/>
       <property name="&lt;Super&gt;e" type="string" value="Thunar"/>
+      <property name="&lt;Super&gt;p" type="string" value="/home/craig/.screenlayout/dual_monitor_4k.sh"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
