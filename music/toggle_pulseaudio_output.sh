@@ -38,23 +38,6 @@ VOLUMIO_SPEAKERS=$(pactl list short sinks | grep -m1 volumio-office | awk '{prin
 CURRENT_SPEAKERS=$(pactl list short sinks | grep RUNNING | awk '{print $ 1}')
 
 
-# INVESTIGATE: Why doesn't this if condition work, when the case statement
-# does. NOTE: I've tried the whole range of `-eq` and `==` with and without the
-# variables quoted.
-#
-# if [[ $CURRENT_RUNNING -eq $LAPTOP_SPEAKERS ]]
-# then
-#    echo "Toggling output to Volumio Speakers..."
-#    pactl move-sink-input $INPUT $VOLUMIO_SPEAKERS
-# elif [[ $CURRENT_RUNNING -eq $VOLUMIO_SPEAKERS ]]
-# then
-#     echo "Toggling output to Laptop Speakers..."
-#     pactl move-sink-input $INPUT $LAPTOP_SPEAKERS
-# else
-#     echo "Unexpected output sink. Setting to Laptop Speakers..."
-#     pactl move-sink-input $INPUT $LAPTOP_SPEAKERS
-# fi
-
 case "$CURRENT_SPEAKERS" in
     $LAPTOP_SPEAKERS)
         echo "Toggling output to Volumio Speakers..."
