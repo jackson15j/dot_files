@@ -9,12 +9,15 @@
     - set_fact:
         base_path: '{{repo_base_path.stdout}}/bash/'
 
-    - name: Symlink xfce4 directory to ~/.config/xfce4
+    - name: Symlink xfce4 config directories to ~/.config/
       file:
-        src: '{{base_path}}xfce4'
-        dest: ~/.config/xfce4
+        src: '{{base_path}}{{item}}'
+        dest: '~/.config/{{item}}'
         state: link
         force: yes
+      with_items:
+        - xfce4
+        - redshift
 
     - name: Install xfce4 packages and dependencies
       # https://wiki.archlinux.org/index.php/Xfce
