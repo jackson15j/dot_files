@@ -32,26 +32,16 @@
         #  v4l2-ctl --set-fmt-video=width=1280,height=720,pixelformat=MJPG
         - v4l2ucp  # v4l configuration for webcams.
 
-    - name: Copy suspend-to-hibernate.service script to /etc/systemd/system/
-      become: true
-      become_method: sudo
-      copy:
-        src: '{{base_path}}suspend-to-hibernate.service'
-        dest: /etc/systemd/system/
-        owner: 'root'
-        group: 'root'
-        mode: 0755
-
-    - name: Enable suspend-to-hibernate service
-      become: true
-      become_method: sudo
-      systemd:
-        name: suspend-to-hibernate.service
-        enabled: True
-        state: started
-        # user: yes
-
     - name: Copy logind.conf script to /etc/systemd/
+      # NOTE: No longer need a custom `suspend-then-hibernate.service`, since
+      # this is now baked into `systemd` from version 239. The default is 2hrs
+      # in suspend. Also, the custom service was broken since official support
+      # came in. Reference:
+      #
+      # * https://github.com/systemd/systemd/pull/8274
+      # * https://wiki.archlinux.org/index.php/Power_management#Delayed_hibernation_service_file
+      #
+      # test via: `systemctl -o verbose suspend-then-hibernate`.
       become: true
       become_method: sudo
       copy:
