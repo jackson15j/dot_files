@@ -92,6 +92,18 @@
         - {path: "/org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled",
            value: "true"}
 
+    - name: Copy blacklist.conf to /etc/modprobe.d/
+      # Removing psmouse module, since it is deprecated by libinput
+      # Verify by: `lsmod | grep psmouse`, being empty.
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{base_path}}blacklist.conf'
+        dest: /etc/modprobe.d/
+        owner: 'root'
+        group: 'root'
+        mode: 0755
+
     - name: Copy 90-override.conf script to /etc/sysctl.d/, for an inotify fix
       # https://docs.syncthing.net/users/faq.html#inotify-limits
       become: true
