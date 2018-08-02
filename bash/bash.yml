@@ -97,6 +97,9 @@
       become: true
       become_method: sudo
       command: pacman -Rc --noconfirm tracker
+      # FIXME: write a better command if package is not present, instead of
+      # ignoring.
+      ignore_errors: yes
       tags:
         - remove
 
