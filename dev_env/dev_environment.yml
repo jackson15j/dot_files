@@ -77,6 +77,17 @@
       with_items:
         - monodevelop-stable  # MonoDevelop IDE.
 
+    - name: Install Java packages.
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - jdk10-openjdk
+        - openjdk10-doc
+        - maven
+
     - name: Install general productivity packages
       become: true
       become_method: sudo
