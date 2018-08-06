@@ -11,4 +11,4 @@
 - import_playbook: photos/photos.yml
 - import_playbook: dev_env/docker.yml
 - import_playbook: dev_env/dev_environment.yml
-- import_playbook: dev_env/virtualenvs/landslide.yml
+#- import_playbook: dev_env/virtualenvs/landslide.yml  # FIXME: Learn and update with the `pipenv` workflow: https://github.com/pypa/pipenv

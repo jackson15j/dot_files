@@ -41,7 +41,7 @@
         - pep8
         - flake8
         - jedi
-        - virtualenvwrapper
+        - pipenv  # replacement for virtualenv. See: https://docs.pipenv.org/install/
         - ipython
         - ipdb
       tags:

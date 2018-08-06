@@ -1,4 +1,5 @@
 ---
+# FIXME: Learn and update with the `pipenv` workflow: https://github.com/pypa/pipenv
 - name: Running the Landslide Virtualenv ansible playbook for presentation rendering...
   hosts: localhost
   tasks:
@@ -6,6 +7,7 @@
       pip:
         name: "{{item}}"
         virtualenv: ~/virt_envs/landslide
+        virtualenv_command: pipenv
         state: latest
       with_items:
         - landslide
