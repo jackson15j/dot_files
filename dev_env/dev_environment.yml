@@ -59,6 +59,7 @@
         # - gcc-multilib  # build 32/64-bit packages. Conflicts with `gcc`.
         - gdb
         - clang
+        - boost
 
     - name: Install C# packages
       become: true
