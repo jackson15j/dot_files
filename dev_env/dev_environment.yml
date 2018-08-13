@@ -61,6 +61,11 @@
         - clang
         - boost
 
+    - name: Install C++ AUR packages
+      aur: name="{{item}}" tool=yaourt
+      with_items:
+        - boost-build  # Easy C++ project building.
+
     - name: Install C# packages
       become: true
       become_method: sudo
