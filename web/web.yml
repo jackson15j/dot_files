@@ -13,6 +13,15 @@
     #   # https://aur.archlinux.org/packages/libc%2B%2B/
     #   command: gpg --recv-keys 0FC3042E345AD05D
 
+    - name: Install Web packages
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - firefox
+
     - name: Install AUR packages
       aur: name="{{item}}" tool=yaourt
       with_items:
