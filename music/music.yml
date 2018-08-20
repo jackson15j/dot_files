@@ -82,8 +82,12 @@
         - music
 
     - name: Install abcde AUR depencies
-      aur: name="{{item}}" tool=yaourt
+      aur: name="{{item}}" tool=yaourt update=yes
       with_items:
+        # NOTE: Just found out that when a new version of Perl is installed, it
+        # doesn't migrate modules to the latest versions folder
+        # (`/usr/lib/perl5/5.XX/vendor_perl/<Package>/`). Do a pacman/yaourt
+        # reinstall with `pacman -S <package>`.
         - perl-musicbrainz-discid  # abcde dependency for MusicBrainz lookups.
         - perl-webservice-musicbrainz  # abcde dependency for MusicBrainz lookups.
       tags:
