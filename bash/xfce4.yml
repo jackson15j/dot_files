@@ -29,6 +29,7 @@
       with_items:
         - xfce4
         - xfce4-goodies
+        - network-manager-applet  # Panel applet. TODO: find an xfce variant.
         - blueman  # https://github.com/blueman-project/blueman, BT management.
         - redshift # https://wiki.archlinux.org/index.php/Redshift
         - arandr  # Easy tool to output xrandr displays.
