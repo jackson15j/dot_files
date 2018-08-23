@@ -45,11 +45,14 @@
       become: true
       become_method: sudo
       copy:
-        src: '{{base_path}}logind.conf'
+        src: '{{base_path}}{{item}}'
         dest: /etc/systemd/
         owner: 'root'
         group: 'root'
-        mode: 0755
+        mode: 0644
+      with_items:
+        - logind.conf
+        - sleep.conf
 
     - name: Restart logind service to enable suspend with delayed hibernate
       # See: https://wiki.archlinux.org/index.php/Power_management#ACPI_events.
