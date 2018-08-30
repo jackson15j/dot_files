@@ -4,3 +4,4 @@
 *.retry
 *.sql
 *.state
+*.rc
