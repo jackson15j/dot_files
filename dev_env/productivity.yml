@@ -1,0 +1,18 @@
+- name: Running the Productivity Dev Environment ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
+
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/'
+
+    - name: Install general productivity packages
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - libreoffice

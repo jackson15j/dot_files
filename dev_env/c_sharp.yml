@@ -1,0 +1,26 @@
+- name: Running the C# Dev Environment ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
+
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/'
+
+    - name: Install C# packages
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - mono  # https://wiki.archlinux.org/index.php/Mono
+        - mono-tools  # docs/testing
+        - dotnet-sdk  # https://wiki.archlinux.org/index.php/.NET_Core
+        - dotnet-runtime
+
+    - name: Install C# AUR packages
+      aur: name="{{item}}" tool=yaourt
+      with_items:
+        - monodevelop-stable  # MonoDevelop IDE.

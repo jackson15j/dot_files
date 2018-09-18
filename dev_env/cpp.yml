@@ -1,0 +1,28 @@
+- name: Running the C++ Dev Environment ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
+
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/'
+
+    - name: Install C++ packages
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - cmake
+        - gcc
+        # - gcc-multilib  # build 32/64-bit packages. Conflicts with `gcc`.
+        - gdb
+        - clang
+        - boost
+
+    - name: Install C++ AUR packages
+      aur: name="{{item}}" tool=yaourt
+      with_items:
+        - boost-build  # Easy C++ project building.

@@ -12,4 +12,11 @@
 - import_playbook: photos/photos.yml
 - import_playbook: dev_env/docker.yml
 - import_playbook: dev_env/dev_environment.yml
+- import_playbook: dev_env/python.yml
+- import_playbook: dev_env/cpp.yml
+- import_playbook: dev_env/c_sharp.yml
+- import_playbook: dev_env/java.yml
+- import_playbook: dev_env/productivity.yml
+- import_playbook: dev_env/random.yml
+- import_playbook: dev_env/repos.yml
 #- import_playbook: dev_env/virtualenvs/landslide.yml  # FIXME: Learn and update with the `pipenv` workflow: https://github.com/pypa/pipenv

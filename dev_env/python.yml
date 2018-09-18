@@ -1,0 +1,25 @@
+- name: Running the Python Dev Environment ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
+
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/'
+
+    - name: Install system-wide python packages
+      become: true
+      become_method: sudo
+      pip:
+        name: "{{item}}"
+        state: latest
+      with_items:
+        - pep8
+        - flake8
+        - jedi
+        - pipenv  # replacement for virtualenv. See: https://docs.pipenv.org/install/
+        - ipython
+        - ipdb
+      tags:
+        - virtualenvs
