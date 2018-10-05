@@ -34,6 +34,7 @@
         - redshift # https://wiki.archlinux.org/index.php/Redshift
         - arandr  # Easy tool to output xrandr displays.
         - xreader  # PDF/document viewer alternative to gnome's `evince`.
+        - gnome-keyring  # Can't find a non-gnome variant.
 
     - name: Enable RedShift night temperature service
       systemd:
