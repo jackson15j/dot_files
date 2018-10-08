@@ -15,6 +15,7 @@
       user:
         name: tmux
         comment: tmux guest account
+        # https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
         password: "$6$FireWallaby1$Cf3KDyCBX52gpssSY5r1niMAjdzl.jwExhjNeS9NZ6XTLRx9yh9/rUQCfUG1uJTOu5v.OLY4C7tuHXdSjcz/60"
         shell: /bin/bash
 
