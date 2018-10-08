@@ -24,17 +24,6 @@
       with_items:
         - .bashrc
         - .bash_prompt
-        - .tmux.conf
-
-    - name: Copy tmux_share script to /usr/local/bin for guest access.
-      become: true
-      become_method: sudo
-      copy:
-        src: '{{base_path}}tmux_share'
-        dest: /usr/local/bin/
-        owner: '{{ansible_user_id}}'
-        group: '{{ansible_user_gid}}'
-        mode: 0755
 
     - name: Install Bash packages
       # http://docs.ansible.com/ansible/become.html
@@ -46,7 +35,6 @@
         state: latest
       with_items:
         - python-pip
-        - tmux
         - syncthing  # https://wiki.archlinux.org/index.php/Syncthing.
         - powertop  # diagnose battery/power management issues.
         - jnettop  # A top-like console network traffic visualizer.
@@ -102,9 +90,6 @@
       ignore_errors: yes
       tags:
         - remove
-
-
-
 
     - name: Enable SyncThing service
       # https://docs.ansible.com/ansible/latest/modules/systemd_module.html
