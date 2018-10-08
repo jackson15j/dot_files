@@ -21,8 +21,13 @@
         - gdb
         - clang
         - boost
+        - cscope
+      tags:
+        - cpp
 
     - name: Install C++ AUR packages
       aur: name="{{item}}" tool=yaourt
       with_items:
         - boost-build  # Easy C++ project building.
+      tags:
+        - cpp
