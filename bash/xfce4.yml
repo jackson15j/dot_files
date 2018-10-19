@@ -35,6 +35,12 @@
         - arandr  # Easy tool to output xrandr displays.
         - xreader  # PDF/document viewer alternative to gnome's `evince`.
         - gnome-keyring  # Can't find a non-gnome variant.
+        - seahorse  # GUI to modify the keyring.
+
+    - name: Install VPN AUR packages
+      aur: name="{{item}}" tool=yaourt
+      with_items:
+        - networkmanager-sstp  # FIXME: put in work ansible. Along with /etc/NetworkManager/system-connections/<work-sstp-vpn>
 
     - name: Enable RedShift night temperature service
       systemd:
