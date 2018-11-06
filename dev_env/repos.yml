@@ -87,6 +87,9 @@
         - {
         repo: 'git@github.com:pft/mingus.git',
         dest: '~/github_forks/mingus/'}
+        - {
+        repo: 'git@github.com:jackson15j/giantbomb-kodi.git',
+        dest: '~/github_forks/giantbomb-kodi/'}
       tags:
         - repos
         - forks
