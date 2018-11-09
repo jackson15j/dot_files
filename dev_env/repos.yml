@@ -90,6 +90,9 @@
         - {
         repo: 'git@github.com:jackson15j/giantbomb-kodi.git',
         dest: '~/github_forks/giantbomb-kodi/'}
+        - {
+        repo: 'git@github.com:jamesmgittins/smartbomb.git',
+        dest: '~/github_forks/smartbomb/'}
       tags:
         - repos
         - forks
