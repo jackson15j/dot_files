@@ -42,24 +42,24 @@
       become_method: sudo  # requires running with --ask-become-pass.
       # https://docs.ansible.com/ansible/pacman_module.html
       pacman:
-        name: "{{ item }}"
+        name:
+          - yaourt
+          - python-pip
+          - tmux
+          - syncthing  # https://wiki.archlinux.org/index.php/Syncthing.
+          - powertop  # diagnose battery/power management issues.
+          - jnettop  # A top-like console network traffic visualizer.
+          - iptraf-ng  # network traffic visualizer with wireshark scroll logs.
+          # TODO scripting of grabbing a default smb config from somewhere to
+          # `/etc/samba/smb.conf`.
+          - samba  # https://wiki.archlinux.org/index.php/samba.
+          - rdesktop
+          - tigervnc  # binaries are `vncviewer`, `vncserver`, etc...
+          - gvfs-afc  # IOS support in filemanger:
+            # https://wiki.archlinux.org/index.php/IOS
+          - ifuse  # IOS mounting support.
+          - adobe-source-han-sans-jp-fonts  # Japanese font.
         state: latest
-      with_items:
-        - python-pip
-        - tmux
-        - syncthing  # https://wiki.archlinux.org/index.php/Syncthing.
-        - powertop  # diagnose battery/power management issues.
-        - jnettop  # A top-like console network traffic visualizer.
-        - iptraf-ng  # network traffic visualizer with wireshark scroll logs.
-        # TODO scripting of grabbing a default smb config from somewhere to
-        # `/etc/samba/smb.conf`.
-        - samba  # https://wiki.archlinux.org/index.php/samba.
-        - rdesktop
-        - tigervnc  # binaries are `vncviewer`, `vncserver`, etc...
-        - gvfs-afc  # IOS support in filemanger:
-          # https://wiki.archlinux.org/index.php/IOS
-        - ifuse  # IOS mounting support.
-        - adobe-source-han-sans-jp-fonts  # Japanese font.
 
     - name: Explicitly remove tracker and all depenant packages
       # Removing `tracker` since I don't use it's features or most of the
@@ -112,7 +112,7 @@
         name: syncthing.service
         enabled: True
         state: started
-        user: yes
+        scope: user
 
     - name: Create ~/Downloads/iphone for later manual ifuse mounting when plugged in.
       file:

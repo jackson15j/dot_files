@@ -4,7 +4,7 @@
 - import_playbook: dell/dell.yml  # TODO: do a system check for my xps or not.
 #- import_playbook: bash/spectrwm.yml  # Experimenting with windows managers.
 #- import_playbook: bash/gnome.yml  # Removed in favour of XFCE4.
-- import_playbook: bash/xfce4.yml
+#- import_playbook: bash/xfce4.yml
 - import_playbook: bash/steam.yml
 - import_playbook: web/web.yml
 - import_playbook: music/music.yml
@@ -14,8 +14,8 @@
 - import_playbook: dev_env/dev_environment.yml
 - import_playbook: dev_env/python.yml
 - import_playbook: dev_env/cpp.yml
-- import_playbook: dev_env/c_sharp.yml
-- import_playbook: dev_env/java.yml
+#- import_playbook: dev_env/c_sharp.yml
+#- import_playbook: dev_env/java.yml
 - import_playbook: dev_env/productivity.yml
 - import_playbook: dev_env/random.yml
 - import_playbook: dev_env/repos.yml

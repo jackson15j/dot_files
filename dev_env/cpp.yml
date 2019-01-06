@@ -12,15 +12,14 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - cmake
+          - gcc
+          # - gcc-multilib  # build 32/64-bit packages. Conflicts with `gcc`.
+          - gdb
+          - clang
+          - boost
         state: latest
-      with_items:
-        - cmake
-        - gcc
-        # - gcc-multilib  # build 32/64-bit packages. Conflicts with `gcc`.
-        - gdb
-        - clang
-        - boost
 
     - name: Install C++ AUR packages
       aur: name="{{item}}" tool=yaourt

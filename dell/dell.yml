@@ -14,23 +14,22 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          # Was: https://wiki.archlinux.org/index.php/Touchpad_Synaptics
+          # Now: https://wiki.archlinux.org/index.php/Libinput
+          # Further settings in: /etc/X11/xorg.conf.d/30-touchpad.conf.
+          - xf86-input-libinput  # xf86-input-synaptics is deprecated.
+          # Dell BIOS updating = Download exe to a pendrive and using the Bios
+          # Flash Update at boot time (F12), since I'm legacy (instead of UEFI).
+          # www.dell.com/support/article/uk/en/ukdhs1/sln171755/updating-the-dell-bios-in-linux-and-ubuntu-environments?lang=en
+          # Dell component FW updates:
+          # https://wiki.archlinux.org/index.php/Flashing_BIOS_from_Linux#fwupd
+          # https://fwupd.org/lvfs/device/7ceaf7a8-0611-4480-9e30-64d8de420c7c
+          - fwupd
+          # FIXME: need to make the following permanent for my Tandberg webcam:
+          #  v4l2-ctl --set-fmt-video=width=1280,height=720,pixelformat=MJPG
+          - v4l2ucp  # v4l configuration for webcams.
         state: latest
-      with_items:
-        # Was: https://wiki.archlinux.org/index.php/Touchpad_Synaptics
-        # Now: https://wiki.archlinux.org/index.php/Libinput
-        # Further settings in: /etc/X11/xorg.conf.d/30-touchpad.conf.
-        - xf86-input-libinput  # xf86-input-synaptics is deprecated.
-        # Dell BIOS updating = Download exe to a pendrive and using the Bios
-        # Flash Update at boot time (F12), since I'm legacy (instead of UEFI).
-        # www.dell.com/support/article/uk/en/ukdhs1/sln171755/updating-the-dell-bios-in-linux-and-ubuntu-environments?lang=en
-        # Dell component FW updates:
-        # https://wiki.archlinux.org/index.php/Flashing_BIOS_from_Linux#fwupd
-        # https://fwupd.org/lvfs/device/7ceaf7a8-0611-4480-9e30-64d8de420c7c
-        - fwupd
-        # FIXME: need to make the following permanent for my Tandberg webcam:
-        #  v4l2-ctl --set-fmt-video=width=1280,height=720,pixelformat=MJPG
-        - v4l2ucp  # v4l configuration for webcams.
 
     - name: Copy logind.conf script to /etc/systemd/
       # NOTE: No longer need a custom `suspend-then-hibernate.service`, since

@@ -12,8 +12,7 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - rabbitmq
+          - docker-compose
         state: latest
-      with_items:
-        - rabbitmq
-        - docker-compose

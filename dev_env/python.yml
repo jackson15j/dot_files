@@ -12,14 +12,13 @@
       become: true
       become_method: sudo
       pip:
-        name: "{{item}}"
+        name:
+          - pep8
+          - flake8
+          - jedi
+          - pipenv  # replacement for virtualenv. See: https://docs.pipenv.org/install/
+          - ipython
+          - ipdb
         state: latest
-      with_items:
-        - pep8
-        - flake8
-        - jedi
-        - pipenv  # replacement for virtualenv. See: https://docs.pipenv.org/install/
-        - ipython
-        - ipdb
       tags:
         - virtualenvs

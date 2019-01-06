@@ -39,3 +39,4 @@ know a better way.
 
 * [Get ansible variables](http://stackoverflow.com/questions/18839509/where-can-i-get-a-list-of-ansible-pre-defined-variables):
   `ansible -m setup 127.0.0.1`.
+* Git submodules cloning: `git submodule update --init --recursive`.

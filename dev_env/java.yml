@@ -12,9 +12,8 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - jdk10-openjdk
+          - openjdk10-doc
+          - maven
         state: latest
-      with_items:
-        - jdk10-openjdk
-        - openjdk10-doc
-        - maven

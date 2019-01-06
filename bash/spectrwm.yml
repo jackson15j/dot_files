@@ -22,10 +22,9 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - spectrwm
+          - xterm
+          - xlockmore
+          - xscreensaver
         state: latest
-      with_items:
-        - spectrwm
-        - xterm
-        - xlockmore
-        - xscreensaver
