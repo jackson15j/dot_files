@@ -87,6 +87,9 @@
         - {
         repo: 'git@github.com:pft/mingus.git',
         dest: '~/github_forks/mingus/'}
+        - {
+        repo: 'git@github.com:jerry40/the-old-mode.git',
+        dest: '~/github_forks/the-old-mode/'}
       tags:
         - repos
         - forks
