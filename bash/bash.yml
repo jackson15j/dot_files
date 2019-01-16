@@ -103,3 +103,22 @@
       file:
         path: ~/Downloads/iphone
         state: directory
+
+    - name: Copy smb.conf script to /etc/samba/
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{base_path}}smb.conf'
+        dest: /etc/samba/
+        owner: 'root'
+        group: 'root'
+        mode: 0644
+
+    - name: Restart smb service.
+      # See: https://wiki.archlinux.org/index.php/samba
+      become: true
+      become_method: sudo
+      systemd:
+        name: smb.service
+        enabled: True
+        state: restarted
