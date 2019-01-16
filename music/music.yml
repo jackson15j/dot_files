@@ -59,16 +59,15 @@
       become_method: sudo  # requires running with --ask-become-pass.
       # https://docs.ansible.com/ansible/pacman_module.html
       pacman:
-        name: "{{ item }}"
+        name:
+          - mpd
+          - glyr  # Album art support for abcde
+          - abcde
+          - picard  # Musicbrainz tagger. Use to upload discid's if missing.
+          - python-discid  # picard dependency for cd lookups. Haven't been able
+                           # to get this to work from a virtualenv yet.
+          - cantata
         state: latest
-      with_items:
-        - mpd
-        - glyr  # Album art support for abcde
-        - abcde
-        - picard  # Musicbrainz tagger. Use to upload discid's if missing.
-        - python-discid  # picard dependency for cd lookups. Haven't been able
-                         # to get this to work from a virtualenv yet.
-        - cantata
       tags:
         - music
 
@@ -108,6 +107,6 @@
         name: mpd.service
         enabled: True
         state: started
-        user: yes
+        scope: user
       tags:
         - music

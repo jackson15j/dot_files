@@ -17,18 +17,17 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - libdvdcss
+          - libdvdread
+          - libdvdnav
+          - mpv  # better version of mplayer.
+          # `dvdbackup -i /dev/cdrom -M -o /output/path/if/default/guess/is/rubbish/`
+          - dvdbackup  # https://wiki.archlinux.org/index.php/Dvdbackup
+          # https://wiki.archlinux.org/index.php/FFmpeg
+          # Encode a folder's *.VOB files to H264:
+          # Linux (software): `for i in *.VOB; do nice ffmpeg -i $i -c:v libx264 -preset veryslow ${i%.*}_vs_264.mp4; done`
+          # Windows (GPU=V.Fast!!): `for %i in (*.VOB) do ffmpeg.exe -i %i -c:v # h264_nvenc -preset slow %~ni_s_h264_nvenc.mp4`
         state: latest
-      with_items:
-        - libdvdcss
-        - libdvdread
-        - libdvdnav
-        - mpv  # better version of mplayer.
-        # `dvdbackup -i /dev/cdrom -M -o /output/path/if/default/guess/is/rubbish/`
-        - dvdbackup  # https://wiki.archlinux.org/index.php/Dvdbackup
-        # https://wiki.archlinux.org/index.php/FFmpeg
-        # Encode a folder's *.VOB files to H264:
-        # Linux (software): `for i in *.VOB; do nice ffmpeg -i $i -c:v libx264 -preset veryslow ${i%.*}_vs_264.mp4; done`
-        # Windows (GPU=V.Fast!!): `for %i in (*.VOB) do ffmpeg.exe -i %i -c:v # h264_nvenc -preset slow %~ni_s_h264_nvenc.mp4`
       tags:
         - video

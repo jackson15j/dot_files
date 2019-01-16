@@ -6,10 +6,9 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - docker
         state: latest
-      with_items:
-        - docker
 
     - name: Create docker group
       become: true

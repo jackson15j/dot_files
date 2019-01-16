@@ -12,7 +12,6 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - libreoffice
         state: latest
-      with_items:
-        - libreoffice

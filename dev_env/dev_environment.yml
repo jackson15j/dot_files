@@ -13,23 +13,21 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - mosh
         state: latest
-      with_items:
-        - mosh
 
     - name: Install generic programming packages
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - make
+          #  Removed for: https://hub.docker.com/r/jagregory/pandoc/
+          # - pandoc  # document file conversions.
+          # - texlive-core  # PDF/Latex creation from pandoc. https://wiki.archlinux.org/index.php/TeX_Live
+          - ruby  # docs.travis-ci.com/user/encryption-keys/
         state: latest
-      with_items:
-        - make
-        #  Removed for: https://hub.docker.com/r/jagregory/pandoc/
-        # - pandoc  # document file conversions.
-        # - texlive-core  # PDF/Latex creation from pandoc. https://wiki.archlinux.org/index.php/TeX_Live
-        - ruby  # docs.travis-ci.com/user/encryption-keys/
 
     - name: Install Travis CLI for the occassional CI task...
       # docs.travis-ci.com/user/encryption-keys/

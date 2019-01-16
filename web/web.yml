@@ -17,10 +17,9 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - firefox
         state: latest
-      with_items:
-        - firefox
 
     - name: Install AUR packages
       aur: name="{{item}}" tool=yaourt
@@ -29,3 +28,4 @@
         - opera-ffmpeg-codecs
         - discord
         - google-chrome
+        - slack-desktop
