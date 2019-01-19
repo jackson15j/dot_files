@@ -2,13 +2,6 @@
 - name: Running the gnome window manager ansible playbook...
   hosts: localhost
   tasks:
-    - name: Get repo base path
-      command: git rev-parse --show-toplevel
-      register: repo_base_path
-
-    - set_fact:
-        base_path: '{{repo_base_path.stdout}}/bash/'
-
     - name: Apply Gnome touchpad settings
       # Gnome (Wayland) stamps over my xorg touch pad settings, so lets fix
       # them up.

@@ -2,13 +2,6 @@
 - name: Running the Photo ansible playbook...
   hosts: localhost
   tasks:
-    - name: Get repo base path
-      command: git rev-parse --show-toplevel
-      register: repo_base_path
-
-    - set_fact:
-        base_path: '{{repo_base_path.stdout}}/photos/'
-
     - name: Install photo packages
       become: true
       become_method: sudo

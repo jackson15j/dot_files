@@ -3,13 +3,6 @@
 - name: Running the Dell XPS 13 ansible playbook...
   hosts: localhost
   tasks:
-    - name: Get repo base path
-      command: git rev-parse --show-toplevel
-      register: repo_base_path
-
-    - set_fact:
-        base_path: '{{repo_base_path.stdout}}/dell/'
-
     - name: Install Dell packages
       become: true
       become_method: sudo
@@ -44,7 +37,7 @@
       become: true
       become_method: sudo
       copy:
-        src: '{{base_path}}{{item}}'
+        src: '{{playbook_dir}}/{{item}}'
         dest: /etc/systemd/
         owner: 'root'
         group: 'root'
@@ -66,7 +59,7 @@
       become: true
       become_method: sudo
       copy:
-        src: '{{base_path}}30-touchpad.conf'
+        src: '{{playbook_dir}}/30-touchpad.conf'
         dest: /etc/X11/xorg.conf.d/
         owner: 'root'
         group: 'root'
@@ -78,7 +71,7 @@
       become: true
       become_method: sudo
       copy:
-        src: '{{base_path}}blacklist.conf'
+        src: '{{playbook_dir}}/blacklist.conf'
         dest: /etc/modprobe.d/
         owner: 'root'
         group: 'root'
@@ -89,7 +82,7 @@
       become: true
       become_method: sudo
       copy:
-        src: '{{base_path}}90-override.conf'
+        src: '{{playbook_dir}}/90-override.conf'
         dest: /etc/sysctl.d/
         owner: 'root'
         group: 'root'

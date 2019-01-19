@@ -2,21 +2,10 @@
 - name: Running the Music ansible playbook...
   hosts: localhost
   tasks:
-    - name: Get repo base path
-      command: git rev-parse --show-toplevel
-      register: repo_base_path
-      tags:
-        - music
-
-    - set_fact:
-        base_path: '{{repo_base_path.stdout}}/music/'
-      tags:
-        - music
-
     # Tasks to install Music packages for the configs like mpd/abcde.
     - name: Symlink music configs to user home directory
       file:
-        src: '{{base_path}}{{ item }}'
+        src: '{{playbook_dir}}/{{ item }}'
         dest: '~/{{ item }}'
         state: link
         force: yes  # See: https://github.com/ansible/ansible/issues/7627
@@ -37,7 +26,7 @@
 
     - name: Symlink .mpd directory to ~/Music/.mpd/
       file:
-        src: '{{base_path}}.mpd'
+        src: '{{playbook_dir}}/.mpd'
         dest: ~/Music/.mpd
         state: link
         force: yes

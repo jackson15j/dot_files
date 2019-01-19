@@ -2,16 +2,9 @@
 - name: Running the xfce4 window manager ansible playbook...
   hosts: localhost
   tasks:
-    - name: Get repo base path
-      command: git rev-parse --show-toplevel
-      register: repo_base_path
-
-    - set_fact:
-        base_path: '{{repo_base_path.stdout}}/bash/'
-
     - name: Symlink xfce4 config directories to ~/.config/
       file:
-        src: '{{base_path}}{{item}}'
+        src: '{{playbook_dir}}/{{item}}'
         dest: '~/.config/{{item}}'
         state: link
         force: yes
@@ -53,7 +46,7 @@
       # to quickly generate the xrandr line to fix this up with a script.
       # TODO: display detection to get our scripts called on hotplug.
       file:
-        src: '{{base_path}}.screenlayout'
+        src: '{{playbook_dir}}/.screenlayout'
         dest: ~/.screenlayout
         state: link
         force: yes

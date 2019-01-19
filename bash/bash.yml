@@ -2,22 +2,18 @@
 - name: Running the Bash ansible playbook...
   hosts: localhost
   tasks:
-    - name: Get repo base path
-      command: git rev-parse --show-toplevel
-      register: repo_base_path
-
-    - set_fact:
-        base_path: '{{repo_base_path.stdout}}/bash/'
-
     - name: Set global git user name
       command: git config --global user.name "Craig Astill"
 
     - name: Set global git user email
       command: git config --global user.email "craigastill@gmail.com"
 
+    - name: Set global git user name
+      command: git config --global github.user "jackson15j"
+
     - name: Symlink config files to user home directory
       file:
-        src: '{{base_path}}{{item}}'
+        src: '{{playbook_dir}}/{{item}}'
         dest: '~/{{item}}'
         state: link
         force: yes
@@ -109,7 +105,7 @@
       become: true
       become_method: sudo
       copy:
-        src: '{{base_path}}smb.conf'
+        src: '{{playbook_dir}}/smb.conf'
         dest: /etc/samba/
         owner: 'root'
         group: 'root'
