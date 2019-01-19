@@ -1,13 +1,6 @@
 - name: Running the Repos Dev Environment ansible playbook...
   hosts: localhost
   tasks:
-    - name: Get repo base path
-      command: git rev-parse --show-toplevel
-      register: repo_base_path
-
-    - set_fact:
-        base_path: '{{repo_base_path.stdout}}/'
-
     - name: Install my github repos...
       # Need to out of band, sort out the ssh keys to access github.
       git:
