@@ -32,10 +32,18 @@
           # - seahorse  # GUI to modify the keyring.
         state: latest
 
-    - name: Install VPN AUR packages
+    - name: Install AUR packages
       aur: name="{{item}}" tool=yaourt
       with_items:
-        - networkmanager-sstp  # FIXME: put in work ansible. Along with /etc/NetworkManager/system-connections/<work-sstp-vpn>
+          # FIXME: put in work ansible. Along with #
+          # /etc/NetworkManager/system-connections/<work-sstp-vpn>
+        - networkmanager-sstp
+        # Fixes the issue of the Super (windows) key ignoring modifiers.
+        # https://github.com/hanschen/ksuperkey,
+        # https://forum.xfce.org/viewtopic.php?id=9643.
+        # - ksuperkey
+        # NOTE: Going with using `Super+space` for the whiskermenu to allow
+        # modifiers to work. https://bugzilla.xfce.org/show_bug.cgi?id=7845.
 
     - name: Enable RedShift night temperature service
       systemd:
