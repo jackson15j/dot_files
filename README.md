@@ -6,7 +6,8 @@ command, which will prompt for sudo password (pacman package installation) due
 to the `-K` or `--ask-become-pass` flag:
 
 ```bash
- ansible-playbook main.yml -i hosts -K
+pipenv install
+pipenv run ansible-playbook -K main.yml
 ```
 
 Tags

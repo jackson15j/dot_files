@@ -1,7 +1,12 @@
 ---
 - name:  Update & upgrade pacman once at start of ansible
   hosts: localhost
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python"
   tasks:
+    - set_fact:
+        ansible_python_interpreter: "{{ansible_python_interpreter}}"
+
     - name:
       # http://docs.ansible.com/ansible/become.html
       become: true
