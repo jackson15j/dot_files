@@ -1,0 +1,58 @@
+---
+- name: Running the Tmux ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
+
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/bash/'
+
+    - name: add the user 'tmux' as a guest account.
+      become: true
+      become_method: sudo
+      user:
+        name: tmux
+        comment: tmux guest account
+        # https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+        password: "$6$FireWallaby1$Cf3KDyCBX52gpssSY5r1niMAjdzl.jwExhjNeS9NZ6XTLRx9yh9/rUQCfUG1uJTOu5v.OLY4C7tuHXdSjcz/60"
+        shell: /bin/bash
+
+    - name: Copy tmux .bashrc to the tmux user home, so they log straight into a tmux session.
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{base_path}}.bashrc_tmux'
+        dest: '/home/tmux/.bashrc'
+        owner: tmux
+        group: tmux
+        force: yes
+      
+    - name: Symlink tmux config files to tmux user home directory
+      file:
+        src: '{{base_path}}{{item}}'
+        dest: '~/{{item}}'
+        state: link
+        force: yes
+      with_items:
+        - .tmux.conf
+
+    - name: Copy tmux_share script to /usr/local/bin for main user to control guest access.
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{base_path}}tmux_share'
+        dest: /usr/local/bin/
+        owner: '{{ansible_user_id}}'
+        group: '{{ansible_user_gid}}'
+        mode: 0755
+
+    - name: Install tmux packages
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - tmux

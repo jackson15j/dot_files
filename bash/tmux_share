@@ -10,11 +10,14 @@ help ()
 
 do_tmux ()
 {
+    # mode requires client check whether or not `-r` should be appended to:
+    # `tmux -S /tmp/tmux_share_socket attach [-r]`.
     mode=$1
     socket=/tmp/tmux_share_socket
     mode_file=/tmp/tmux_share_mode
     # Linux: Unlock the guest account so our guest can get to our session
-    sudo usermod -U guest ## commented out, since don't have that on mac
+# Commenting out usermod stuff since I've created a locked down tmux user in ansible.
+#    sudo usermod -U guest ## commented out, since don't have that on mac
     # Mac: http://hints.macworld.com/article.php?story=20051109195739851 - how to disable a user on mac.
     # sudo pwpolicy -u tmux -setpolicy isDisabled=0
     echo ${mode} > ${mode_file}
@@ -31,7 +34,7 @@ do_tmux ()
     rm ${socket}
     rm ${mode_file}
     # Linux: lock the guest account now we're done with it
-    sudo usermod -L guest
+#    sudo usermod -L guest
     # Mac:
     # sudo pwpolicy -u tmux -setpolicy isDisabled=1
 }

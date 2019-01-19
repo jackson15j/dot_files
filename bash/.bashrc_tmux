@@ -1,0 +1,16 @@
+# TMUX
+# https://wiki.archlinux.org/index.php/Tmux#Start_tmux_on_every_shell_login
+if which tmux >/dev/null 2>&1; then
+    # Check for an active tmux session and if it is rw/ro.
+    if [[ -e "/tmp/tmux_share_socket" ]]; then
+       if grep -q ro /tmp/tmux_share_mode; then
+           tmux -S /tmp/tmux_share_socket attach -r
+       else
+           tmux -S /tmp/tmux_share_socket attach
+       fi
+       tmux detach-client
+    fi
+fi
+
+# All cases lead to disconnect.
+exit

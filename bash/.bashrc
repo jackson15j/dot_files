@@ -19,3 +19,7 @@ EDITOR=/usr/bin/nano
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+
+# Python's `pipenv` stores `.venv` in project folder instead of `/tmp`:
+# https://pipenv.readthedocs.io/en/latest/advanced/#pipenv.environments.PIPENV_VENV_IN_PROJECT
+export PIPENV_VENV_IN_PROJECT=true
