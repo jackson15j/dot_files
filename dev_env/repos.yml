@@ -37,8 +37,9 @@
         for x in ~/github_repos/*;
         do [ -d $x ] &&
         cd "$x" &&
-        git config user.name "Craig Astill" &&
-        git config user.email "craig.astill@gmail.com";
+        git config --local user.name "Craig Astill" &&
+        git config --local user.email "craig.astill@gmail.com" &&
+        git config --local github.user "jackson15j";
         done;
       tags:
         - repos
@@ -112,8 +113,9 @@
         for x in ~/github_forks/*;
         do [ -d $x ] &&
         cd "$x" &&
-        git config user.name "Craig Astill" &&
-        git config user.email "craig.astill@gmail.com";
+        git config --local user.name "Craig Astill" &&
+        git config --local user.email "craig.astill@gmail.com" &&
+        git config --local github.user "jackson15j";
         done;
       tags:
         - repos
