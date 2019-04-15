@@ -39,6 +39,7 @@
           # `/etc/samba/smb.conf`.
           - samba  # https://wiki.archlinux.org/index.php/samba.
           - rdesktop
+          - freerdp  # RDP with RD Gateway support.
           - tigervnc  # binaries are `vncviewer`, `vncserver`, etc...
           - gvfs-afc  # IOS support in filemanger:
             # https://wiki.archlinux.org/index.php/IOS
