@@ -90,6 +90,12 @@
         - {
         repo: 'git@github.com:jamesmgittins/smartbomb.git',
         dest: '~/github_forks/smartbomb/'}
+        - {
+        repo: 'git@github.com:boto/botocore.git',
+        dest: '~/github_forks/botocore/'}
+        - {
+        repo: 'git@github.com:boto/boto3.git',
+        dest: '~/github_forks/boto3/'}
       tags:
         - repos
         - forks
