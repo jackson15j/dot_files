@@ -23,3 +23,7 @@ EDITOR=/usr/bin/nano
 # Python's `pipenv` stores `.venv` in project folder instead of `/tmp`:
 # https://pipenv.readthedocs.io/en/latest/advanced/#pipenv.environments.PIPENV_VENV_IN_PROJECT
 export PIPENV_VENV_IN_PROJECT=true
+
+# Can't sign via gpg??
+# tutorials.technology/solved_errors/21-gpg-signing-failed-Inappropriate-ioctl-for-device.html
+export GPG_TTY=$(tty)
