@@ -33,14 +33,14 @@
       tags:
         - music
 
-    - name: Removing python3 eyeD3, since abcde installs a py2 version. Will fix this up in a later step.
-      become: true
-      become_method: sudo
-      pip:
-        name: eyeD3
-        state: absent
-      tags:
-        - music
+    # - name: Removing python3 eyeD3, since abcde installs a py2 version. Will fix this up in a later step.
+    #   become: true
+    #   become_method: sudo
+    #   pip:
+    #     name: eyeD3
+    #     state: absent
+    #   tags:
+    #     - music
 
     - name: Install Music packages
       # http://docs.ansible.com/ansible/become.html
@@ -60,14 +60,14 @@
       tags:
         - music
 
-    - name: Remove the python2 version of eyeD3 installed by abcde
-      become: true
-      become_method: sudo
-      pacman:
-        name: eyeD3
-        state: absent
-      tags:
-        - music
+    # - name: Remove the python2 version of eyeD3 installed by abcde
+    #   become: true
+    #   become_method: sudo
+    #   pacman:
+    #     name: python-eyed3
+    #     state: absent
+    #   tags:
+    #     - music
 
     - name: Install abcde AUR depencies
       aur: name="{{item}}" tool=yaourt update=yes
@@ -81,14 +81,14 @@
       tags:
         - music
 
-    - name: Now lets install/upgrade the python3 version of eyeD3 from pip. Ideally should make an abcde virtualenv.
-      become: true
-      become_method: sudo
-      pip:
-        name: eyeD3
-        state: latest
-      tags:
-        - music
+    # - name: Now lets install/upgrade the python3 version of eyeD3 from pip. Ideally should make an abcde virtualenv.
+    #   become: true
+    #   become_method: sudo
+    #   pip:
+    #     name: eyeD3
+    #     state: latest
+    #   tags:
+    #     - music
 
     - name: Enable mpd service
       # https://docs.ansible.com/ansible/latest/modules/systemd_module.html

@@ -1,17 +1,32 @@
 - name: Running the Python Dev Environment ansible playbook...
   hosts: localhost
   tasks:
+    # - name: Install system-wide python packages
+    #   become: true
+    #   become_method: sudo
+    #   pip:
+    #     name:
+    #       - pep8
+    #       - flake8
+    #       - jedi
+    #       - pipenv  # replacement for virtualenv. See: https://docs.pipenv.org/install/
+    #       - ipython
+    #       - ipdb
+    #     state: latest
+    #   tags:
+    #     - virtualenvs
+
     - name: Install system-wide python packages
       become: true
       become_method: sudo
-      pip:
+      pacman:
         name:
-          - pep8
+          - python-pycodestyle  # rename for pep8.
           - flake8
-          - jedi
-          - pipenv  # replacement for virtualenv. See: https://docs.pipenv.org/install/
+          - python-jedi
+          - python-pipenv  # replacement for virtualenv. See: https://docs.pipenv.org/install/
           - ipython
-          - ipdb
+          - python-ipdb
         state: latest
       tags:
         - virtualenvs
