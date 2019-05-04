@@ -9,6 +9,7 @@
 - import_playbook: bash/steam.yml
 - import_playbook: web/web.yml
 - import_playbook: music/music.yml
+- import_playbook: music/airplay_speakers.yml
 - import_playbook: video/video.yml
 - import_playbook: photos/photos.yml
 - import_playbook: dev_env/docker.yml
