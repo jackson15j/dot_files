@@ -120,3 +120,16 @@
         name: smb.service
         enabled: True
         state: restarted
+
+    - name: Enable ntpd service
+      become: true
+      become_method: sudo
+      systemd:
+        name: ntpd.service
+        enabled: True
+        state: restarted
+
+    - name: Sync NTP
+      become: true
+      become_method: sudo
+      command: ntpd -q
