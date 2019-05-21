@@ -2,11 +2,18 @@
 #
 # Quick script that toggles between my laptop audio and my Office speakers that
 # are connected to a RaspberryPi running Volumio. NOTE: I have previously set
-# up Volumio to expose itself as a ROAP client, as well as allowing the laptop
-# to use ROAP speakers as an audio sink.
+# up Volumio to expose itself as a RAOP client, as well as allowing the laptop
+# to use RAOP speakers as an audio sink.
 
 
 # Steps:
+#
+# * Load RAOP support in `pulseaudio` (native since version 11)
+# https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index8h2:
+#
+# ```bash
+# pactl load-module module-raop-discover
+# ```
 #
 # * Identify my Laptops speakers as an output sink:
 #

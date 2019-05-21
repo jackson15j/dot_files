@@ -45,6 +45,7 @@
             # https://wiki.archlinux.org/index.php/IOS
           - ifuse  # IOS mounting support.
           - adobe-source-han-sans-jp-fonts  # Japanese font.
+          - nmap
         state: latest
 
     - name: Explicitly remove tracker and all depenant packages

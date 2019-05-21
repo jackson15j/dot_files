@@ -1,0 +1,26 @@
+---
+- name: Running the AirPlay Speakers support ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Add RAOP module to /etc/pulse/default.pa
+      become: true
+      become_method: sudo
+      lineinfile:
+        path: /etc/pulse/default.pa
+        line: 'load-module module-raop-discover'
+        state: present
+      tags:
+        - music
+        - pulseaudio
+
+    - name: Restart pulseaudio service
+      # Note: may need to reload the music source/browser afterwards, once
+      # pulseaudio is back up.
+      systemd:
+        name: pulseaudio.service
+        state: restarted
+        daemon_reload: True
+        scope: user
+      tags:
+        - music
+        - pulseaudio
