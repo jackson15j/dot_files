@@ -27,3 +27,7 @@ export PIPENV_VENV_IN_PROJECT=true
 # Can't sign via gpg??
 # tutorials.technology/solved_errors/21-gpg-signing-failed-Inappropriate-ioctl-for-device.html
 export GPG_TTY=$(tty)
+
+# Manjaro: Default keymap for `[Shift+]AltGr+#` does not give backslash (`\`)
+# or bar/pipe (`|`). Added a new `xkbmap` that can is loaded to correct this.
+xkbcomp -w 0 /home/craig/github_repos/dot_files/keyboards/vortex_core/xkbmap $DISPLAY

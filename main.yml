@@ -1,6 +1,7 @@
 ---
 - import_playbook: update_pacman.yml
 - import_playbook: bash/bash.yml
+- import_playbook: keyboards/vortex_core/vortex_core.yml
 - import_playbook: dell/dell.yml  # TODO: do a system check for my xps or not.
 - import_playbook: bash/tmux.yml
 #- import_playbook: bash/spectrwm.yml  # Experimenting with windows managers.

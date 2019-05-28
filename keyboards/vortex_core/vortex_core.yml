@@ -1,0 +1,16 @@
+---
+- name: Running the Vortex Keyboard support ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Fix backslash and pipe on AltGr+# in ~/.bashrc
+      lineinfile:
+        path: ~/.bashrc
+        line: 'xkbcomp -w 0 {{playbook_dir}}/xkbmap $DISPLAY'
+        state: present
+      tags:
+        - vortex
+
+    - name: Update keymap now.
+      command: 'xkbcomp -w 0 xkbmap $DISPLAY'
+      tags:
+        - vortex
