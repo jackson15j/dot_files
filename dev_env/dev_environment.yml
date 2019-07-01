@@ -22,6 +22,11 @@
           - ruby  # docs.travis-ci.com/user/encryption-keys/
         state: latest
 
+    - name: Install generic programming AUR packages
+      aur: name="{{item}}" tool=yaourt
+      with_items:
+        - mscgen  # http://www.mcternan.me.uk/mscgen/
+
     - name: Install Travis CLI for the occassional CI task...
       # docs.travis-ci.com/user/encryption-keys/
       gem:
