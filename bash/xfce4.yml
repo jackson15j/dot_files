@@ -35,6 +35,16 @@
           - network-manager-sstp
         state: latest
 
+    - name: Remove bad xfce4 packages
+      become: true
+      become_method: sudoe
+      pacman:
+        name:
+          # `xflock4` is picking up `light-locker`, but it's a buggy and
+          # unsupported package. Hence removal.
+          - light-locker
+        state: absent
+
     # - name: Install AUR packages
     #   aur: name="{{item}}" tool=yaourt
     #   with_items:
