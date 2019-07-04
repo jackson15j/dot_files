@@ -34,8 +34,6 @@
           '~/github_repos/android_test/'}
         - {repo: 'git@github.com:jackson15j/c_sharp_random_project_for_learning.git', dest:
           '~/github_repos/c_sharp_random_project_for_learning/'}
-        - {repo: 'git@github.com:jackson15j/qmk_firmware.git', dest:
-          '~/github_repos/qmk_firmware/'}
       tags:
         - repos
 
@@ -103,6 +101,9 @@
         - {
         repo: 'git@github.com:boto/boto3.git',
         dest: '~/github_forks/boto3/'}
+        - {
+        repo: 'git@github.com:qmk/qmk_firmware.git',
+        dest: '~/github_forks/qmk_firmware/'}
       tags:
         - repos
         - forks
