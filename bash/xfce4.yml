@@ -33,7 +33,12 @@
           # FIXME: put in work ansible. Along with #
           # /etc/NetworkManager/system-connections/<work-sstp-vpn>
           - network-manager-sstp
+          - xfce4-screensaver  # https://forum.manjaro.org/t/stable-update-2019-08-13-kernels-xfce-4-14-kde-libreoffice-6-3-discord-mesa/98600/75
         state: latest
+
+    - name: Remove buggy light-locker from LockCommand
+      # https://forum.manjaro.org/t/v18-xfce-xflock4-doesnt-activate-xscreensaver/69798/3
+      command: 'xfconf-query -c xfce4-session -p /general/LockCommand -s ""'
 
     - name: Remove bad xfce4 packages
       become: true
