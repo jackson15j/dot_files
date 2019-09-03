@@ -26,6 +26,7 @@
       aur: name="{{item}}" tool=yaourt
       with_items:
         - mscgen  # http://www.mcternan.me.uk/mscgen/
+        - visual-studio-code-bin  # https://aur.archlinux.org/packages/visual-studio-code-bin/
 
     - name: Install Travis CLI for the occassional CI task...
       # docs.travis-ci.com/user/encryption-keys/
