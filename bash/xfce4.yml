@@ -2,16 +2,17 @@
 - name: Running the xfce4 window manager ansible playbook...
   hosts: localhost
   tasks:
-    - name: Symlink xfce4 config directories to ~/.config/
-      file:
-        src: '{{playbook_dir}}/{{item}}'
-        dest: '~/.config/{{item}}'
-        state: link
-        force: yes
-      with_items:
-        # FIXME: Commented out whilst I test out Manjaro (previously Antergos).
-        # - xfce4
-        - redshift
+    # - name: Symlink xfce4 config directories to ~/.config/
+    #   file:
+    #     src: '{{playbook_dir}}/{{item}}'
+    #     dest: '~/.config/{{item}}'
+    #     state: link
+    #     force: yes
+    #   with_items:
+    #     # FIXME: Commented out whilst I test out Manjaro (previously Antergos).
+    #     # - xfce4
+    #     # FIXME: Redshift keeps crashing, so removing.
+    #     # - redshift
 
     - name: Install xfce4 packages and dependencies
       # https://wiki.archlinux.org/index.php/Xfce
@@ -19,7 +20,6 @@
       become_method: sudo
       pacman:
         name:
-          - redshift # https://wiki.archlinux.org/index.php/Redshift
           - arandr  # Easy tool to output xrandr displays.
           # FIXME: Commented out whilst I test out Manjaro (previously
           # Antergos).
@@ -54,13 +54,6 @@
     #     # - ksuperkey
     #     # NOTE: Going with using `Super+space` for the whiskermenu to allow
     #     # modifiers to work. https://bugzilla.xfce.org/show_bug.cgi?id=7845.
-
-    - name: Enable RedShift night temperature service
-      systemd:
-        name: redshift-gtk.service
-        enabled: True
-        state: started
-        scope: user
 
     - name: Symlink .screenlayout directory to ~/.screenlayout
       # xfce is rubbish with hotplugging multiple displays. So lets use arandr
