@@ -31,3 +31,6 @@ export GPG_TTY=$(tty)
 # Manjaro: Default keymap for `[Shift+]AltGr+#` does not give backslash (`\`)
 # or bar/pipe (`|`). Added a new `xkbmap` that can is loaded to correct this.
 xkbcomp -w 0 /home/craig/github_repos/dot_files/keyboards/vortex_core/xkbmap $DISPLAY
+
+# Add a Display for spawning GUI apps like `xfreerdp`.
+export DISPLAY=:0.0
