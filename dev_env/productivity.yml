@@ -7,4 +7,5 @@
       pacman:
         name:
           - libreoffice
+          - peek  # screen recording to gif.
         state: latest
