@@ -69,7 +69,7 @@
     #   tags:
     #     - music
 
-    - name: Install abcde AUR depencies
+    - name: Install abcde AUR depencies and music packages
       aur: name="{{item}}" tool=yaourt update=yes
       with_items:
         # NOTE: Just found out that when a new version of Perl is installed, it
@@ -77,7 +77,14 @@
         # (`/usr/lib/perl5/5.XX/vendor_perl/<Package>/`). Do a pacman/yaourt
         # reinstall with `pacman -S <package>`.
         - perl-musicbrainz-discid  # abcde dependency for MusicBrainz lookups.
-        - perl-webservice-musicbrainz  # abcde dependency for MusicBrainz lookups.
+        - perl-webservice-musicbrainz  # abcde dependency for MusicBrainz # lookups.
+        - spotify
+        - spotify-tui  # https://github.com/Rigellute/spotify-tui.
+        # TODO: Add spotifyd pulseaudio version.
+        # TODO: Add: `~/.config/spotifyd/spotifyd.conf`.
+        # TODO: Add: `systemctl --user enable/start spotifyd.service`.
+        # https://github.com/Spotifyd/spotifyd
+        # https://www.rockyourcode.com/spotify-in-the-terminal-with-spotify-tui-and-spotifyd/
       tags:
         - music
 
