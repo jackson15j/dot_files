@@ -46,6 +46,7 @@
           - ifuse  # IOS mounting support.
           - adobe-source-han-sans-jp-fonts  # Japanese font.
           - nmap
+          - bind-tools  # `nslookup`, etc...
         state: latest
 
     - name: Explicitly remove tracker and all depenant packages
