@@ -19,6 +19,7 @@
 - import_playbook: dev_env/cpp.yml
 #- import_playbook: dev_env/c_sharp.yml
 #- import_playbook: dev_env/java.yml
+#- import_playbook: dev_env/go.yml
 - import_playbook: dev_env/productivity.yml
 - import_playbook: dev_env/random.yml
 - import_playbook: dev_env/repos.yml
