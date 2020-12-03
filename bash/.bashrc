@@ -34,3 +34,11 @@ xkbcomp -w 0 /home/craig/github_repos/dot_files/keyboards/vortex_core/xkbmap $DI
 
 # Add a Display for spawning GUI apps like `xfreerdp`.
 export DISPLAY=:0.0
+
+
+# Unlock the gnome-keyring on start of the windows manager.
+# https://wiki.archlinux.org/index.php/GNOME/Keyring#With_a_display_manager
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
