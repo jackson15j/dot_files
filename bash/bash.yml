@@ -2,6 +2,8 @@
 - name: Running the Bash ansible playbook...
   hosts: localhost
   tasks:
+    # TODO: add printer. Note: below is deprecated and didn't work.
+    # lpadmin -p HP_LaserJet_P1102w -E -v "ipp://HP%20LaserJet%20Professional%20P1102w._ipp._tcp.local/" -m drv:///hp/hpcups.drv/hp-laserjet_professional_p_1102w.ppd
     - name: Set global git user name
       command: git config --global user.name "Craig Astill"
 
