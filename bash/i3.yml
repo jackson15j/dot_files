@@ -1,0 +1,36 @@
+---
+- name: Running the i3 ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Symlink i3 config directories to ~/.config/
+      file:
+        src: '{{playbook_dir}}/.config/{{item}}'
+        dest: '~/.config/{{item}}'
+        state: link
+        force: yes
+      with_items:
+        - i3
+        - dunst
+      tags:
+        - i3
+
+    - name: Install i3 packages
+      become: true
+      become_method: sudo
+      pacman:
+        name:
+          - i3-wm  # Tiling Window Manager.
+          - i3lock  # lockscreen
+          - i3-scrot  # screenshots
+          - i3status  # https://github.com/i3/i3status # i3bar status area.
+          - dunst  # https://wiki.archlinux.org/index.php/Dunst # notifications.
+        state: latest
+      tags:
+        - i3
+
+    - name: Install i3 AUR dependencies
+      aur: name="{{item}}" tool=yaourt update=yes
+      with_items:
+        - perl-anyevent-i3  # Needed for `i3-save-tree` to work.
+      tags:
+        - i3
