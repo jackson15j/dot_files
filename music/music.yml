@@ -2,6 +2,17 @@
 - name: Running the Music ansible playbook...
   hosts: localhost
   tasks:
+    - name: Symlink music config directories to ~/.config/
+      file:
+        src: '{{playbook_dir}}/../bash/.config/{{item}}'
+        dest: '~/.config/{{item}}'
+        state: link
+        force: yes
+      with_items:
+        - spotifyd
+      tags:
+        - music
+
     # Tasks to install Music packages for the configs like mpd/abcde.
     - name: Symlink music configs to user home directory
       file:
@@ -69,16 +80,20 @@
     #   tags:
     #     - music
 
-    - name: Install abcde AUR depencies and music packages
+    - name: Install abcde AUR dependencies and music packages
       aur: name="{{item}}" tool=yaourt update=yes
       with_items:
         # NOTE: Just found out that when a new version of Perl is installed, it
         # doesn't migrate modules to the latest versions folder
         # (`/usr/lib/perl5/5.XX/vendor_perl/<Package>/`). Do a pacman/yaourt
         # reinstall with `pacman -S <package>`.
+        # eg: `yay -S --asdeps $(pacman -Qqo '/usr/lib/perl5/5.30')`. **and**
+        # clean build the packages!!!
         - perl-musicbrainz-discid  # abcde dependency for MusicBrainz lookups.
         - perl-webservice-musicbrainz  # abcde dependency for MusicBrainz # lookups.
         - spotify
+        - spotifyd  # https://github.com/Spotifyd/spotifyd
+        - playerctl  # https://github.com/altdesktop/playerctl
         - spotify-tui  # https://github.com/Rigellute/spotify-tui.
         # TODO: Add spotifyd pulseaudio version.
         # TODO: Add: `~/.config/spotifyd/spotifyd.conf`.
