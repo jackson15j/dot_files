@@ -67,6 +67,7 @@
           - python-discid  # picard dependency for cd lookups. Haven't been able
                            # to get this to work from a virtualenv yet.
           - cantata
+          - pulsemixer  # CLI pulseaudio mixer.
         state: latest
       tags:
         - music
