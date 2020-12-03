@@ -29,7 +29,7 @@
           # - blueman  # https://github.com/blueman-project/blueman, BT management.
           # - xreader  # PDF/document viewer alternative to gnome's `evince`.
           # - gnome-keyring  # Can't find a non-gnome variant.
-          # - seahorse  # GUI to modify the keyring.
+          - seahorse  # GUI to modify the keyring.
           # FIXME: put in work ansible. Along with #
           # /etc/NetworkManager/system-connections/<work-sstp-vpn>
           - network-manager-sstp
