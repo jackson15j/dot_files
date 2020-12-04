@@ -28,7 +28,7 @@
                        {
                            "class": "^Microsoft\\ Teams\\ \\-\\ Preview$",
                            "instance": "^microsoft\\ teams\\ \\-\\ preview$",
-                           "title": "^Chat\\ \\|\\ Microsoft\\ Teams$"
+                           "title": "^.*\\ \\|\\ Microsoft\\ Teams$"
                        }
                     ],
                     "type": "con"
