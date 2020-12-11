@@ -237,3 +237,11 @@ exec --no-startup-id teams
 ## float pop-out message windows.
 # for_window [ title="" ] floating enable  # Float by `WM_NAME`.
 # for_window [ class="<right-of-comma>" instance="<left-of-comma>" ] floating enable  # Float by `WM_CLASS`.
+
+
+# Pull in display into environment. Needs to be done after the desktop has
+# loaded.
+# Dunst needs this, else if fails with no display until the first notification
+# is sent (which restarts the failed service).
+# https://github.com/dunst-project/dunst/issues/347
+exec sleep 2; systemctl --user import-environment DISPLAY
