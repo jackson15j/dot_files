@@ -55,6 +55,8 @@ bindsym $mod+Shift+p exec pulsemixer
 bindsym $mod+Ctrl+Return exec playerctl -p spotifyd play-pause
 bindsym $mod+Ctrl+n exec playerctl -p spotifyd next
 bindsym $mod+Ctrl+p exec playerctl -p spotifyd previous
+# Toggle dunst notifications off/on.
+bindsym $mod+Ctrl+m exec dunstctl set-paused toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
