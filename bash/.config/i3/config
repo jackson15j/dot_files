@@ -57,6 +57,8 @@ bindsym $mod+Ctrl+n exec playerctl -p spotifyd next
 bindsym $mod+Ctrl+p exec playerctl -p spotifyd previous
 # Toggle dunst notifications off/on.
 bindsym $mod+Ctrl+m exec dunstctl set-paused toggle
+# Screenshot select region.
+bindsym $mod+Shift+s exec i3-scrot -s
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
