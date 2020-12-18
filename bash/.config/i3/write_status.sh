@@ -17,7 +17,8 @@ dunst_status () {
     then
         echo "Enabled" > /tmp/i3/status/dunst
     else
-        echo "DoNotDisturb" > /tmp/i3/status/dunst
+        echo "Deleting: /tmp/i3/status/dunst, so that: i3-status.config can be formatted red!"
+        rm -rf /tmp/i3/status/dunst
     fi
 }
 
