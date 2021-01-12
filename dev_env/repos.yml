@@ -104,6 +104,9 @@
         - {
         repo: 'git@github.com:qmk/qmk_firmware.git',
         dest: '~/github_forks/qmk_firmware/'}
+        - {
+        repo: 'git@github.com:xkahn/camlink.git',
+        dest: '~/github_forks/camlink/'}
       tags:
         - repos
         - forks
