@@ -1,0 +1,16 @@
+---
+- name: Running the QEMU/KVM Virtual Machines ansible playbook...
+  hosts: localhost
+  tasks:
+    - name: Install qemu/KVM virtual machinepackages
+      become: true
+      become_method: sudo
+      pacman:
+        name:
+          # TODO: `sudo systemctl enable --now cockpit.socket`
+          - cockpit  # https://cockpit-project.org/running.html
+          - cockpit-machines
+          - qemu
+          - virt-manager  # Being deprecated for cockpit.
+          - virt-viewer
+        state: latest
