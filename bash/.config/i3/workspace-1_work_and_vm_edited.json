@@ -114,33 +114,11 @@
             },
             "marks": [],
             "name": "i3: Layout saving in i3 - Opera",
-            "percent": 0.383333333333333,
+            "percent": 0.5,
             "swallows": [
                {
                "class": "^Opera$",
                "instance": "^Opera$"
-               }
-            ],
-            "type": "con"
-        },
-        {
-            "border": "pixel",
-            "current_border_width": 3,
-            "floating": "auto_off",
-            "geometry": {
-               "height": 550,
-               "width": 550,
-               "x": 0,
-               "y": 0
-            },
-            "marks": [],
-            "name": "Virtual Machine Manager",
-            "percent": 0.0833333333333334,
-            "swallows": [
-               {
-               "class": "^Virt\\-manager$",
-               "instance": "^virt\\-manager$",
-               "title": "^Virtual\\ Machine\\ Manager$"
                }
             ],
             "type": "con"
@@ -156,13 +134,12 @@
                "y": 0
             },
             "marks": [],
-            "name": "win10 on QEMU/KVM",
-            "percent": 0.533333333333333,
+            "name": "win10 (1) - Remote Viewer",
+            "percent": 0.5,
             "swallows": [
                {
-               "class": "^Virt\\-manager$",
-               "instance": "^virt\\-manager$",
-               "title": "^win10\\ on\\ QEMU\\/KVM$"
+               "class": "^Remote\\-viewer$",
+               "instance": "^remote\\-viewer$"
                }
             ],
             "type": "con"

@@ -196,7 +196,7 @@ bar {
 }
 
 ## https://i3wm.org/docs/layout-saving.html
-exec --no-startup-id "i3-msg 'workspace 1 - Work/Calls; append_layout ~/.config/i3/workspace-1_2021-01-12_edited.json'"
+exec --no-startup-id "i3-msg 'workspace 1 - Work/Calls; append_layout ~/.config/i3/workspace-1_work_and_vm_edited.json'"
 # exec xfce4-terminal
 exec "tmux attach || ~/./dev-tmux"
 # Sleep to avoid the first tmux window being stuck at a tiny window inside the
