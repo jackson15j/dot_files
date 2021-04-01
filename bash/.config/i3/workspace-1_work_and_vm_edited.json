@@ -33,13 +33,13 @@
                                "y": 3
                             },
                             "marks": [],
-                            "name": "Engine Development (Engineering) | Microsoft Teams",
+                            "name": "Signal",
                             "percent": 0.5,
                             "swallows": [
                                {
-                                 "class": "^Microsoft\\ Teams\\ \\-\\ Preview$",
-                                 "instance": "^microsoft\\ teams\\ \\-\\ preview$",
-                                 "title": "^.*\\ \\|\\ Microsoft\\ Teams$"
+                               "class": "^Signal$",
+                               "instance": "^signal$",
+                               "title": "^Signal$"
                                }
                             ],
                             "type": "con"
@@ -55,13 +55,13 @@
                                "y": 3
                             },
                             "marks": [],
-                            "name": "Signal",
+                            "name": "Engine Development (Engineering) | Microsoft Teams",
                             "percent": 0.5,
                             "swallows": [
                                {
-                               "class": "^Signal$",
-                               "instance": "^signal$",
-                               "title": "^Signal$"
+                                 "class": "^Microsoft\\ Teams\\ \\-\\ Preview$",
+                                 "instance": "^microsoft\\ teams\\ \\-\\ preview$",
+                                 "title": "^.*\\ \\|\\ Microsoft\\ Teams$"
                                }
                             ],
                             "type": "con"
