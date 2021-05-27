@@ -59,6 +59,11 @@ bindsym $mod+Ctrl+p exec playerctl -p spotifyd previous
 bindsym $mod+Ctrl+m exec dunstctl set-paused toggle
 # Screenshot select region.
 bindsym $mod+Shift+s exec i3-scrot -s
+bindsym $mod+Ctrl+s exec i3-scrot -sc
+# Spawn qemu-kvm remote viewer.
+# TODO: what is the command that the Cockpit web console is using to both run
+# the VM and spawn the Remote Viewer file ?
+bindsym $mod+Shift+v exec xdg-open ~/Downloads/download
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
