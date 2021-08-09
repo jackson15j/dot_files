@@ -107,6 +107,9 @@
         - {
         repo: 'git@github.com:xkahn/camlink.git',
         dest: '~/github_forks/camlink/'}
+        - {
+        repo: 'git@github.com:jorgenschaefer/pyvenv.git',
+        dest: '~/github_forks/pyvenv/'}
       tags:
         - repos
         - forks
