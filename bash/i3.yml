@@ -11,6 +11,7 @@
       with_items:
         - i3
         - dunst
+        - rofi
       tags:
         - i3
 
@@ -23,7 +24,8 @@
           - i3lock  # lockscreen
           - i3-scrot  # screenshots
           - i3status  # https://github.com/i3/i3status # i3bar status area.
-          - dunst  # https://wiki.archlinux.org/index.php/Dunst # notifications.
+          - dunst  # https://wiki.archlinux.org/index.php/Dunst notifications.
+          - rofi  # dmenu replacement: https://wiki.archlinux.org/title/Rofi
         state: latest
       tags:
         - i3
