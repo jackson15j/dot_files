@@ -10,6 +10,7 @@
           - bt747  # getting files from GPS Logger's, https://wiki.openstreetmap.org/wiki/Holux_RCV-3000
           - iscan  # Epson printer frontend. https://wiki.archlinux.org/index.php/SANE/Scanner-specific_problems#Epson
           - darktable  # https://www.darktable.org
+          - krita  # https://krita.org/en
         state: latest
 
     - name: Install AUR packages
