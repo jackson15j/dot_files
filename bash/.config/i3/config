@@ -52,7 +52,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym $mod+Shift+p exec pulsemixer
-bindsym $mod+Ctrl+Return exec playerctl -p spotifyd play-pause
+# Play-Pause is broken: see: https://github.com/Spotifyd/spotifyd/issues/890
+# bindsym $mod+Ctrl+Return exec playerctl -p spotifyd play-pause
+bindsym $mod+Ctrl+Return exec "(playerctl -p spotifyd status | grep Playing &> 0 && playerctl -p spotifyd pause) || (playerctl -p spotifyd status | grep Paused &> 0 && playerctl -p spotifyd play)"
 bindsym $mod+Ctrl+n exec playerctl -p spotifyd next
 bindsym $mod+Ctrl+p exec playerctl -p spotifyd previous
 # Toggle dunst notifications off/on.
