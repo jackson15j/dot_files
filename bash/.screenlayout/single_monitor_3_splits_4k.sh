@@ -7,7 +7,7 @@
 # Delete pre-existing virtual monitors.
 for x in $(xrandr --listmonitors); do xrandr --delmonitor $x;done
 # Setting a 3 screen (2x1) virtual monitor.
-xrandr --setmonitor VIRT-LEFT-TOP 1920/305x1080/175+0+0 DP1
+xrandr --setmonitor VIRT-LEFT-TOP 1920/305x1080/175+0+0 DP-1
 xrandr --setmonitor VIRT-LEFT-BOT 1920/305x1080/175+0+1080 none
 xrandr --setmonitor VIRT-RIGHT 1920/305x2160/350+1920+0 none
 # Toggle the frame buffer to make it refresh to the new display.
