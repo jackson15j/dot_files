@@ -42,3 +42,7 @@ if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK
 fi
+
+# Put global NPM packages in a RW location.
+# https://wiki.archlinux.org/title/node.js_#Allow_user-wide_installations
+export npm_config_prefix="$HOME/.local"
