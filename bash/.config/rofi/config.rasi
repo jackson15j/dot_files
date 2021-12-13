@@ -3,7 +3,6 @@ configuration {
  modi: "window,drun,ssh,combi";
  /* https://github.com/davatorium/rofi-themes/tree/master/Official%20Themes */
  /*theme: "sidebar";*/
- theme: "gruvbox-dark-soft";
  font: "hack 10";
  combi-modi: "window,drun,ssh";
 /*	width: 50;*/
@@ -156,3 +155,4 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+@theme "gruvbox-dark-soft"
