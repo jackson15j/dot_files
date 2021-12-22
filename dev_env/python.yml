@@ -51,3 +51,13 @@
         - poetry
         - python
         - virtualenvs
+
+    - name: Add poetry bash completions.
+      # https://python-poetry.org/docs/master/#enable-tab-completion-for-bash-fish-or-zsh
+      become: true
+      become_method: sudo
+      ansible.builtin.shell: poetry completions bash > /etc/bash_completion.d/poetry
+      tags:
+        - poetry
+        - python
+        - virtualenvs
