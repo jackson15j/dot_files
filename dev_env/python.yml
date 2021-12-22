@@ -29,4 +29,25 @@
           - python-ipdb
         state: latest
       tags:
+        - python
+        - virtualenvs
+
+    - name: Download latest poetry script.
+      # https://python-poetry.org/docs/
+      # curl -sSL https://install.python-poetry.org | python3 -
+      # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html
+      get_url:
+        url: https://install.python-poetry.org
+        dest: /tmp/install-poetry.py
+      tags:
+        - poetry
+        - python
+        - virtualenvs
+
+    - name: Install poetry system wide
+      # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html
+      ansible.builtin.shell: python /tmp/install-poetry.py
+      tags:
+        - poetry
+        - python
         - virtualenvs
