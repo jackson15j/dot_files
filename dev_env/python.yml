@@ -53,6 +53,17 @@
         - virtualenvs
 
     - name: Add poetry bash completions.
+    - name: --- Create /etc/bash_completion.d/ if it does not exist
+      # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
+      become: true
+      become_method: sudo
+      ansible.builtin.file:
+        path: /etc/bash_completion.d/
+        state: directory
+        mode: '0755'
+      tags:
+        - poetry
+
       # https://python-poetry.org/docs/master/#enable-tab-completion-for-bash-fish-or-zsh
       become: true
       become_method: sudo
