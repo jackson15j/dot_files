@@ -32,6 +32,18 @@
           - python-ipdb
         state: latest
 
+    - name: --- Symlink poetry config directories to ~/.config/
+      # https://python-poetry.org/docs/configuration/
+      file:
+        src: '{{playbook_dir}}/../bash/.config/{{item}}'
+        dest: '~/.config/{{item}}'
+        state: link
+        force: yes
+      with_items:
+        - pypoetry
+      tags:
+        - poetry
+
     - name: --- Download latest poetry script.
       # https://python-poetry.org/docs/
       # curl -sSL https://install.python-poetry.org | python3 -
