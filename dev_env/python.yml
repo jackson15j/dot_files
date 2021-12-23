@@ -1,7 +1,10 @@
 - name: Running the Python Dev Environment ansible playbook...
   hosts: localhost
+  tags:
+    - python
+    - virtualenvs
   tasks:
-    # - name: Install system-wide python packages
+    # - name: --- Install system-wide python packages
     #   become: true
     #   become_method: sudo
     #   pip:
@@ -16,7 +19,7 @@
     #   tags:
     #     - virtualenvs
 
-    - name: Install system-wide python packages
+    - name: --- Install system-wide python packages
       become: true
       become_method: sudo
       pacman:
@@ -28,11 +31,8 @@
           - ipython
           - python-ipdb
         state: latest
-      tags:
-        - python
-        - virtualenvs
 
-    - name: Download latest poetry script.
+    - name: --- Download latest poetry script.
       # https://python-poetry.org/docs/
       # curl -sSL https://install.python-poetry.org | python3 -
       # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html
@@ -41,18 +41,13 @@
         dest: /tmp/install-poetry.py
       tags:
         - poetry
-        - python
-        - virtualenvs
 
-    - name: Install poetry system wide
+    - name: --- Install poetry system wide
       # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html
       ansible.builtin.shell: python /tmp/install-poetry.py
       tags:
         - poetry
-        - python
-        - virtualenvs
 
-    - name: Add poetry bash completions.
     - name: --- Create /etc/bash_completion.d/ if it does not exist
       # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
       become: true
@@ -64,11 +59,10 @@
       tags:
         - poetry
 
+    - name: --- Add poetry bash completions.
       # https://python-poetry.org/docs/master/#enable-tab-completion-for-bash-fish-or-zsh
       become: true
       become_method: sudo
       ansible.builtin.shell: poetry completions bash > /etc/bash_completion.d/poetry
       tags:
         - poetry
-        - python
-        - virtualenvs
