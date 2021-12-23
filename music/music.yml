@@ -90,6 +90,7 @@
         # reinstall with `pacman -S <package>`.
         # eg: `yay -S --asdeps $(pacman -Qqo '/usr/lib/perl5/5.30')`. **and**
         # clean build the packages!!!
+        - abcde-musicbrainz
         - perl-musicbrainz-discid  # abcde dependency for MusicBrainz lookups.
         - perl-webservice-musicbrainz  # abcde dependency for MusicBrainz # lookups.
         - spotify
