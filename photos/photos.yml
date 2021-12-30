@@ -12,6 +12,8 @@
           - darktable  # https://www.darktable.org
           - krita  # https://krita.org/en
         state: latest
+      tags:
+        - photos
 
     - name: Install AUR packages
       # become: true
