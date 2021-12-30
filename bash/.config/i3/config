@@ -43,6 +43,10 @@ client.background       #ffffff
 ## Borders: https://i3wm.org/docs/userguide.html#_default_border_style_for_new_windows
 default_border pixel 3
 for_window [class=".*"] border pixel 3
+# https://www.reddit.com/r/i3wm/comments/am02bo/how_to_remove_title_bar_from_floating_windows/
+default_floating_border pixel 5
+floating_minimum_size 80 x 80
+floating_maximum_size 1600 x 1000
 
 
 # Use pactl to adjust volume in PulseAudio.
