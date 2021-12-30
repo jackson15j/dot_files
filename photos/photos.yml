@@ -11,6 +11,9 @@
           - iscan  # Epson printer frontend. https://wiki.archlinux.org/index.php/SANE/Scanner-specific_problems#Epson
           - darktable  # https://www.darktable.org
           - krita  # https://krita.org/en
+          - libwacom  # https://wiki.archlinux.org/title/Wacom_tablet
+          - xf86-input-wacom  # https://wiki.archlinux.org/title/Wacom_tablet
+          # - linux-headers  # https://wiki.archlinux.org/title/Wacom_tablet
         state: latest
       tags:
         - photos
