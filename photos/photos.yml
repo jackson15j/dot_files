@@ -16,9 +16,27 @@
     - name: Install AUR packages
       # become: true
       # become_method: sudo
-      aur: name="{{item}}" tool=yaourt
-      with_items:
-        - iscan-plugin-gt-f670  # Epson Perfection V200 Photo scanner support.
+      aur:
+        use: yay
+        name:
+          - iscan-plugin-gt-f670  # Epson Perfection V200 Photo scanner support.
+          - digimend-kernel-drivers-dkms  # https://wiki.archlinux.org/title/Wacom_tablet
+          # - digimend-kernel-drivers-dkms-git  # https://wiki.archlinux.org/title/Wacom_tablet
+          - write_stylus  # http://www.styluslabs.com
+      tags:
+        - photos
+
+    - name: Copy Huion Tablet script to /etc/X11/xorg.conf.d/
+      become: true
+      become_method: sudo
+      copy:
+        src: '{{playbook_dir}}/../bash/etc/X11/xorg.conf.d/50-tablet.conf'
+        dest: /etc/X11/xorg.conf.d/
+        owner: 'root'
+        group: 'root'
+        mode: 0644
+      tags:
+        - photos
 
 # TODO:
 # * add following to this repo: `/root/.config/bt747/bt747settings.pdb`.
