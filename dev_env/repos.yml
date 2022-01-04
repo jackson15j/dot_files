@@ -160,6 +160,13 @@
         - repos
         - forks
 
+    - name: Set Global Git config...
+      shell: |
+        git config --global pull.rebase false
+      tags:
+        - repos
+
+
 # FIXME: this is broken because I can't access folders below where ansible is
 # called.
 #
