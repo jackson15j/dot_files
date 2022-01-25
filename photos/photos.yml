@@ -25,6 +25,12 @@
         use: yay
         name:
           - iscan-plugin-gt-f670  # Epson Perfection V200 Photo scanner support.
+
+          # Huion tablet links:
+          #
+          # * https://wiki.archlinux.org/title/Wacom_tablet
+          # * https://github.com/Mainman002/Linux-OpenTabletUI
+          # * https://digimend.github.io/support/
           - digimend-kernel-drivers-dkms  # https://wiki.archlinux.org/title/Wacom_tablet
           # - digimend-kernel-drivers-dkms-git  # https://wiki.archlinux.org/title/Wacom_tablet
           - write_stylus  # http://www.styluslabs.com
