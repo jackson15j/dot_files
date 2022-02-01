@@ -112,6 +112,9 @@
         - {
         repo: 'git@github.com:jorgenschaefer/pyvenv.git',
         dest: '~/github_forks/pyvenv/'}
+        - {
+        repo: 'git@github.com:donnemartin/system-design-primer.git',
+        dest: '~/github_forks/system-design-primer/'}
       tags:
         - repos
         - forks
