@@ -207,7 +207,7 @@ bar {
 }
 
 ## https://i3wm.org/docs/layout-saving.html
-exec --no-startup-id "i3-msg 'workspace 1 - Work/Calls; append_layout ~/.config/i3/workspace-1_work_and_vm_edited.json'"
+exec --no-startup-id "i3-msg 'workspace 1 - Work/Calls; append_layout ~/.config/i3/workspace-1_personal_edited.json'"
 # exec xfce4-terminal
 exec "tmux attach || ~/./dev-tmux"
 # Sleep to avoid the first tmux window being stuck at a tiny window inside the
@@ -216,12 +216,12 @@ exec sleep 1; xfce4-terminal -e "tmux attach"
 # This works with other terminals, but working around by calling outside of terminal:
 # exec uxterm -e "tmux attach || ~/./dev-tmux"
 exec sleep 1; opera
-exec --no-startup-id teams
+# exec --no-startup-id teams
 exec --no-startup-id signal-desktop
 
-# Current Teams release is buggy. my microphone audio keeps cycling in/out from
-# 2nd call onwards. Workaround is to restart Teams.
-bindsym $mod+Shift+t exec "pkill -9 teams && teams"
+# # Current Teams release is buggy. my microphone audio keeps cycling in/out from
+# # 2nd call onwards. Workaround is to restart Teams.
+# bindsym $mod+Shift+t exec "pkill -9 teams && teams"
 
 ## get class names from `xprop` and then clicking on a window.
 # assign [class="Xfce4-terminal"] $ws1

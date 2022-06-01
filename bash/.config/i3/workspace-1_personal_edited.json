@@ -1,0 +1,107 @@
+{
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "marks": [],
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "floating": "auto_off",
+            "layout": "splitv",
+            "marks": [],
+            "percent": 1,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "floating": "auto_off",
+                    "layout": "splitv",
+                    "marks": [],
+                    "percent": 1,
+                    "type": "con",
+                    "nodes": [
+                        {
+                            "border": "pixel",
+                            "current_border_width": 3,
+                            "floating": "auto_off",
+                            "geometry": {
+                               "height": 2135,
+                               "width": 1274,
+                               "x": 2563,
+                               "y": 3
+                            },
+                            "marks": [],
+                            "name": "Signal",
+                            "percent": 0.5,
+                            "swallows": [
+                               {
+                               "class": "^Signal$",
+                               "instance": "^signal$",
+                               "title": "^Signal$"
+                               }
+                            ],
+                            "type": "con"
+                        },
+                        {
+                            "border": "pixel",
+                            "current_border_width": 3,
+                            "floating": "auto_off",
+                            "geometry": {
+                               "height": 485,
+                               "width": 816,
+                               "x": 0,
+                               "y": 0
+                            },
+                            "marks": [],
+                            "name": "Terminal - ",
+                            "percent": 0.5,
+                            "swallows": [
+                               {
+                               "class": "^Xfce4\\-terminal$",
+                               "instance": "^xfce4\\-terminal$",
+                               "title": "^Terminal\\ \\-\\ $"
+                               }
+                            ],
+                            "type": "con"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+{
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "marks": [],
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 3,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 2135,
+               "width": 1914,
+               "x": 1923,
+               "y": 3
+            },
+            "marks": [],
+            "name": "Opera",
+            "percent": 1,
+            "swallows": [
+               {
+               "class": "^Opera$",
+               "instance": "^Opera$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

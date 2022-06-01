@@ -1,0 +1,118 @@
+// vim:ts=4:sw=4:et
+{
+    // tabbed split container with 1 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "marks": [],
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            // splitv split container with 1 children
+            "border": "pixel",
+            "floating": "auto_off",
+            "layout": "splitv",
+            "marks": [],
+            "percent": 1,
+            "type": "con",
+            "nodes": [
+                {
+                    // splitv split container with 2 children
+                    "border": "pixel",
+                    "floating": "auto_off",
+                    "layout": "splitv",
+                    "marks": [],
+                    "percent": 1,
+                    "type": "con",
+                    "nodes": [
+                        {
+                            "border": "pixel",
+                            "current_border_width": 3,
+                            "floating": "auto_off",
+                            "geometry": {
+                               "height": 2135,
+                               "width": 1274,
+                               "x": 2563,
+                               "y": 3
+                            },
+                            "marks": [],
+                            "name": "Signal",
+                            "percent": 0.5,
+                            "swallows": [
+                               {
+                               // "class": "^Signal$",
+                               // "instance": "^signal$",
+                               // "machine": "^casxps$",
+                               // "title": "^Signal$",
+                               // "window_role": "^browser\\-window$"
+                               }
+                            ],
+                            "type": "con"
+                        },
+                        {
+                            "border": "pixel",
+                            "current_border_width": 3,
+                            "floating": "auto_off",
+                            "geometry": {
+                               "height": 485,
+                               "width": 816,
+                               "x": 0,
+                               "y": 0
+                            },
+                            "marks": [],
+                            "name": "Terminal - ",
+                            "percent": 0.5,
+                            "swallows": [
+                               {
+                               // "class": "^Xfce4\\-terminal$",
+                               // "instance": "^xfce4\\-terminal$",
+                               // "machine": "^casxps$",
+                               // "title": "^Terminal\\ \\-\\ $",
+                               // "window_role": "^xfce4\\-terminal\\-1645105493\\-1531168859$"
+                               }
+                            ],
+                            "type": "con"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+{
+    // tabbed split container with 1 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "marks": [],
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 3,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 2135,
+               "width": 1914,
+               "x": 1923,
+               "y": 3
+            },
+            "marks": [],
+            "name": "#969254 - i3-save-tree: Can't locate AnyEvent/I3.pm in @INC (you may need to install the AnyEvent::I3 module) - Debian Bug report logs - Opera",
+            "percent": 1,
+            "swallows": [
+               {
+               // "class": "^Opera$",
+               // "instance": "^Opera$",
+               // "machine": "^casxps$",
+               // "title": "^\\#969254\\ \\-\\ i3\\-save\\-tree\\:\\ Can\\'t\\ locate\\ AnyEvent\\/I3\\.pm\\ in\\ \\@INC\\ \\(you\\ may\\ need\\ to\\ install\\ the\\ AnyEvent\\:\\:I3\\ module\\)\\ \\-\\ Debian\\ Bug\\ report\\ logs\\ \\-\\ Opera$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
