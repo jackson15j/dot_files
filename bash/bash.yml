@@ -126,6 +126,7 @@
         state: restarted
 
     - name: Enable ntpd service
+      # https://wiki.archlinux.org/title/Network_Time_Protocol_daemon
       become: true
       become_method: sudo
       systemd:
