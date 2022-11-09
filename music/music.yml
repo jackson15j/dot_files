@@ -82,26 +82,27 @@
     #     - music
 
     - name: Install abcde AUR dependencies and music packages
-      aur: name="{{item}}" tool=yaourt update=yes
-      with_items:
-        # NOTE: Just found out that when a new version of Perl is installed, it
-        # doesn't migrate modules to the latest versions folder
-        # (`/usr/lib/perl5/5.XX/vendor_perl/<Package>/`). Do a pacman/yaourt
-        # reinstall with `pacman -S <package>`.
-        # eg: `yay -S --asdeps $(pacman -Qqo '/usr/lib/perl5/5.30')`. **and**
-        # clean build the packages!!!
-        - abcde-musicbrainz
-        - perl-musicbrainz-discid  # abcde dependency for MusicBrainz lookups.
-        - perl-webservice-musicbrainz  # abcde dependency for MusicBrainz # lookups.
-        - spotify
-        - spotifyd  # https://github.com/Spotifyd/spotifyd
-        - playerctl  # https://github.com/altdesktop/playerctl
-        - spotify-tui  # https://github.com/Rigellute/spotify-tui.
-        # TODO: Add spotifyd pulseaudio version.
-        # TODO: Add: `~/.config/spotifyd/spotifyd.conf`.
-        # TODO: Add: `systemctl --user enable/start spotifyd.service`.
-        # https://github.com/Spotifyd/spotifyd
-        # https://www.rockyourcode.com/spotify-in-the-terminal-with-spotify-tui-and-spotifyd/
+      aur:
+        use: yay
+        name:
+          # NOTE: Just found out that when a new version of Perl is installed, it
+          # doesn't migrate modules to the latest versions folder
+          # (`/usr/lib/perl5/5.XX/vendor_perl/<Package>/`). Do a pacman/yaourt
+          # reinstall with `pacman -S <package>`.
+          # eg: `yay -S --asdeps $(pacman -Qqo '/usr/lib/perl5/5.30')`. **and**
+          # clean build the packages!!!
+          - abcde-musicbrainz-meta
+          - perl-musicbrainz-discid  # abcde dependency for MusicBrainz lookups.
+          - perl-webservice-musicbrainz  # abcde dependency for MusicBrainz # lookups.
+          - spotify
+          - spotifyd  # https://github.com/Spotifyd/spotifyd
+          - playerctl  # https://github.com/altdesktop/playerctl
+          - spotify-tui  # https://github.com/Rigellute/spotify-tui.
+          # TODO: Add spotifyd pulseaudio version.
+          # TODO: Add: `~/.config/spotifyd/spotifyd.conf`.
+          # TODO: Add: `systemctl --user enable/start spotifyd.service`.
+          # https://github.com/Spotifyd/spotifyd
+          # https://www.rockyourcode.com/spotify-in-the-terminal-with-spotify-tui-and-spotifyd/
       tags:
         - music
 
