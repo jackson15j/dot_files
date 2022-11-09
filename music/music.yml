@@ -97,7 +97,10 @@
           - spotify
           - spotifyd  # https://github.com/Spotifyd/spotifyd
           - playerctl  # https://github.com/altdesktop/playerctl
-          - spotify-tui  # https://github.com/Rigellute/spotify-tui.
+          # Switched to the binary version due to build failures and lack of
+          # ongoing development. See:
+          # https://github.com/Rigellute/spotify-tui/issues/1000.
+          - spotify-tui-bin  # https://github.com/Rigellute/spotify-tui.
           # TODO: Add spotifyd pulseaudio version.
           # TODO: Add: `~/.config/spotifyd/spotifyd.conf`.
           # TODO: Add: `systemctl --user enable/start spotifyd.service`.
