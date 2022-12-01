@@ -41,8 +41,8 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
 ## Borders: https://i3wm.org/docs/userguide.html#_default_border_style_for_new_windows
-default_border pixel 3
-for_window [class=".*"] border pixel 3
+default_border pixel 5
+for_window [class=".*"] border pixel 5
 # https://www.reddit.com/r/i3wm/comments/am02bo/how_to_remove_title_bar_from_floating_windows/
 default_floating_border pixel 5
 floating_minimum_size 80 x 80
