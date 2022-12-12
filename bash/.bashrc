@@ -34,10 +34,6 @@ export GPG_TTY=$(tty)
 export DISPLAY=:0.0
 xkbcomp -w 0 /home/craig/github_repos/dot_files/keyboards/vortex_core/xkbmap $DISPLAY
 
-# Add a Display for spawning GUI apps like `xfreerdp`.
-export DISPLAY=:0.0
-
-
 # Unlock the gnome-keyring on start of the windows manager.
 # https://wiki.archlinux.org/index.php/GNOME/Keyring#With_a_display_manager
 if [ -n "$DESKTOP_SESSION" ];then
