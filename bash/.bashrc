@@ -36,6 +36,9 @@ xkbcomp -w 0 /home/craig/github_repos/dot_files/keyboards/vortex_core/xkbmap $DI
 
 # Unlock the gnome-keyring on start of the windows manager.
 # https://wiki.archlinux.org/index.php/GNOME/Keyring#With_a_display_manager
+# FIXME: Starting to see: `discover_other_daemon` in new terminals. This post:
+# https://bbs.archlinux.org/viewtopic.php?id=277192, points to this fighting
+# over the `systemctl --user status gnome-keyring-daemon` that was started.
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK
