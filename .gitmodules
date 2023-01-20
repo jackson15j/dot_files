@@ -1,0 +1,3 @@
+[submodule "bash/.config/mpv/repos/Eisa01_mpv-scripts"]
+	path = bash/.config/mpv/repos/Eisa01_mpv-scripts
+	url = git@github.com:Eisa01/mpv-scripts.git
