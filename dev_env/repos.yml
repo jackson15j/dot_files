@@ -120,6 +120,9 @@
         - {
         repo: 'git@github.com:donnemartin/system-design-primer.git',
         dest: '~/github_forks/system-design-primer/'}
+        - {
+        repo: 'git@github.com:pimoroni/pimoroni-pico.git',
+        dest: '~/github_forks/pimoroni-pico/'}
       tags:
         - repos
         - forks
