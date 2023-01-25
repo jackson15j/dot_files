@@ -60,69 +60,27 @@
         accept_hostkey: yes
         update: no
       with_items:
-        - {
-        repo: 'git@github.com:emacsmirror/excorporate.git',
-        dest: '~/github_forks/excorporate/'}
-        - {
-        repo: 'git@github.com:mopemope/meghanada-server.git',
-        dest: '~/github_forks/meghanada-server/'}
-        - {
-        repo: 'git@github.com:death/reddit-mode.git',
-        dest: '~/github_forks/reddit-mode/'}
-        - {
-        repo: 'git@github.com:vermiculus/magithub.git',
-        dest: '~/github_forks/magithub/'}
-        - {
-        repo: 'git@github.com:volumio/volumio-plugins.git',
-        dest: '~/github_forks/volumio-plugins/'}
-        - {
-        repo: 'git@github.com:Koutch/Cinnamon-sound-with-apps-volume.git',
-        dest: '~/github_forks/Cinnamon-sound-with-apps-volume/'}
-        - {
-        repo: 'git@github.com:cscutcher/docker-tox-pyenv-runner.git',
-        dest: '~/github_forks/docker-tox-pyenv-runner/'}
-        - {
-        repo: 'git@github.com:GoldenCheetah/GoldenCheetah.git',
-        dest: '~/github_forks/GoldenCheetah/'}
-        - {
-        repo: 'git@github.com:dotnet/samples.git',
-        dest: '~/github_forks/dotnet/samples/'}
-        - {
-        repo: 'git@github.com:pft/mingus.git',
-        dest: '~/github_forks/mingus/'}
-        - {
-        repo: 'git@github.com:jerry40/the-old-mode.git',
-        dest: '~/github_forks/the-old-mode/'}
-        - {
-        repo: 'git@github.com:jackson15j/giantbomb-kodi.git',
-        dest: '~/github_forks/giantbomb-kodi/'}
-        - {
-        repo: 'git@github.com:jamesmgittins/smartbomb.git',
-        dest: '~/github_forks/smartbomb/'}
-        - {
-        repo: 'git@github.com:boto/botocore.git',
-        dest: '~/github_forks/botocore/'}
-        - {
-        repo: 'git@github.com:boto/boto3.git',
-        dest: '~/github_forks/boto3/'}
-        - {
-        repo: 'git@github.com:qmk/qmk_firmware.git',
-        dest: '~/github_forks/qmk_firmware/'}
-        - {
-        repo: 'git@github.com:zmkfirmware/zmk.git',
-        dest: '~/github_forks/zmk/'}
-        - {
-        repo: 'git@github.com:xkahn/camlink.git',
-        dest: '~/github_forks/camlink/'}
-        - {
-        repo: 'git@github.com:jorgenschaefer/pyvenv.git',
-        dest: '~/github_forks/pyvenv/'}
-        - {
-        repo: 'git@github.com:donnemartin/system-design-primer.git',
-        dest: '~/github_forks/system-design-primer/'}
-        - {
-        repo: 'git@github.com:pimoroni/pimoroni-pico.git',
-        dest: '~/github_forks/pimoroni-pico/'}
+        - {repo: 'git@github.com:emacsmirror/excorporate.git', dest: '~/github_forks/excorporate/'}
+        - {repo: 'git@github.com:mopemope/meghanada-server.git', dest: '~/github_forks/meghanada-server/'}
+        - {repo: 'git@github.com:death/reddit-mode.git', dest: '~/github_forks/reddit-mode/'}
+        - {repo: 'git@github.com:vermiculus/magithub.git', dest: '~/github_forks/magithub/'}
+        - {repo: 'git@github.com:volumio/volumio-plugins.git', dest: '~/github_forks/volumio-plugins/'}
+        - {repo: 'git@github.com:Koutch/Cinnamon-sound-with-apps-volume.git', dest: '~/github_forks/Cinnamon-sound-with-apps-volume/'}
+        - {repo: 'git@github.com:cscutcher/docker-tox-pyenv-runner.git', dest: '~/github_forks/docker-tox-pyenv-runner/'}
+        - {repo: 'git@github.com:GoldenCheetah/GoldenCheetah.git', dest: '~/github_forks/GoldenCheetah/'}
+        - {repo: 'git@github.com:dotnet/samples.git', dest: '~/github_forks/dotnet/samples/'}
+        - {repo: 'git@github.com:pft/mingus.git', dest: '~/github_forks/mingus/'}
+        - {repo: 'git@github.com:jerry40/the-old-mode.git', dest: '~/github_forks/the-old-mode/'}
+        - {repo: 'git@github.com:jackson15j/giantbomb-kodi.git', dest: '~/github_forks/giantbomb-kodi/'}
+        - {repo: 'git@github.com:jamesmgittins/smartbomb.git', dest: '~/github_forks/smartbomb/'}
+        - {repo: 'git@github.com:boto/botocore.git', dest: '~/github_forks/botocore/'}
+        - {repo: 'git@github.com:boto/boto3.git', dest: '~/github_forks/boto3/'}
+        - {repo: 'git@github.com:qmk/qmk_firmware.git', dest: '~/github_forks/qmk_firmware/'}
+        - {repo: 'git@github.com:zmkfirmware/zmk.git', dest: '~/github_forks/zmk/'}
+        - {repo: 'git@github.com:xkahn/camlink.git', dest: '~/github_forks/camlink/'}
+        - {repo: 'git@github.com:jorgenschaefer/pyvenv.git', dest: '~/github_forks/pyvenv/'}
+        - {repo: 'git@github.com:donnemartin/system-design-primer.git', dest: '~/github_forks/system-design-primer/'}
+        - {repo: 'git@github.com:pimoroni/pimoroni-pico.git', dest: '~/github_forks/pimoroni-pico/'}
       tags:
         - repos
         - forks
@@ -164,9 +122,7 @@
         accept_hostkey: yes
         update: no
       with_items:
-        - {
-        repo: 'git@gitlab.com:mikeyjkmo/nameko-payee-notifier.git',
-        dest: '~/gitlab_forks/nameko-payee-notifier/'}
+        - {repo: 'git@gitlab.com:mikeyjkmo/nameko-payee-notifier.git', dest: '~/gitlab_forks/nameko-payee-notifier/'}
       tags:
         - repos
         - forks
