@@ -1,0 +1,17 @@
+#!/bin/sh
+# https://stackoverflow.com/questions/5609192/how-to-set-up-tmux-so-that-it-starts-up-with-specified-windows-opened
+# https://linux.die.net/man/1/tmux
+#
+# Now moved to running emacs as a systemd service, so no longer using the hack
+# to run up the emacs server whilst spawning the other pains of emacsclient's
+# in a background thread.
+# See: https://wiki.archlinux.org/title/Emacs#As_a_systemd_unit.
+tmux new-session -d -s 'work' -n 'emacs - Main' 'emacsclient -t'
+tmux new-window -d -t work:2 -n 'emacs - Spare' 'emacsclient -t'
+tmux new-window -d -t work:3 -n 'emacs - Other' 'emacsclient -t'
+tmux new-window -d -t work:4 -n 'emacs - GENERAL' 'emacsclient -t'
+tmux new-window -d -t work:7 -n 'bash'
+tmux new-window -d -t work:8 -n 'bash'
+tmux new-window -d -t work:9 -n 'Spotify' 'spt'
+tmux set -g remain-on-exit on  # Use: `Ctrl+b : respawn-window` to resurrect dead windows.
+tmux -2 attach-session -d

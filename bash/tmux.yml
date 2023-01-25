@@ -30,6 +30,7 @@
         force: yes
       with_items:
         - .tmux.conf
+        - dev-tmux
 
     - name: Copy tmux_share script to /usr/local/bin for main user to control guest access.
       become: true
