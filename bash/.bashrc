@@ -16,7 +16,9 @@ export PATH=$PATH:$(ruby -e 'print Gem.user_dir')/bin
 # >>> Added by cnchi installer
 BROWSER=/usr/bin/chromium
 EDITOR=/usr/bin/nano
+# https://wiki.archlinux.org/title/Emacs#As_a_systemd_unit
 EDITOR="emacsclient -t"
+VISUAL="emacsclient"
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
