@@ -38,6 +38,8 @@
           '~/github_repos/python_homework_nlp/'}
         - {repo: 'git@github.com:jackson15j/zmk-config.git', dest:
           '~/github_repos/zmk-config/'}
+        - {repo: 'git@github.com:jackson15j/python_homework_config_file_parser.git', dest:
+          '~/github_repos/python_homework_config_file_parser/'}
       tags:
         - repos
 
