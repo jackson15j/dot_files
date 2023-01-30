@@ -211,10 +211,10 @@ bar {
 ## https://i3wm.org/docs/layout-saving.html
 exec --no-startup-id "i3-msg 'workspace 1 - Work/Calls; append_layout ~/.config/i3/workspace-1_personal_edited.json'"
 # exec xfce4-terminal
-exec "tmux attach || ~/./dev-tmux"
+exec "while not [ $(systemctl is-active emacs.service --user) == 'active' ]; do sleep 0.5; done; tmux attach || ~/./dev-tmux"
 # Sleep to avoid the first tmux window being stuck at a tiny window inside the
 # tmux pane.
-exec sleep 1; xfce4-terminal -e "tmux attach"
+exec while not [ $(systemctl is-active emacs.service --user) == "active" ]; do sleep 0.5; done; xfce4-terminal -e "tmux attach"
 # This works with other terminals, but working around by calling outside of terminal:
 # exec uxterm -e "tmux attach || ~/./dev-tmux"
 exec sleep 1; opera
