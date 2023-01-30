@@ -221,6 +221,8 @@ exec sleep 1; opera
 # exec --no-startup-id teams
 exec --no-startup-id signal-desktop
 
+exec while not [ $(systemctl is-active emacs.service --user) == "active" ]; do sleep 0.5; done; emacsclient -c
+
 # # Current Teams release is buggy. my microphone audio keeps cycling in/out from
 # # 2nd call onwards. Workaround is to restart Teams.
 # bindsym $mod+Shift+t exec "pkill -9 teams && teams"
