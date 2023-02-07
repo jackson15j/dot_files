@@ -83,6 +83,7 @@
         - {repo: 'git@github.com:jorgenschaefer/pyvenv.git', dest: '~/github_forks/pyvenv/'}
         - {repo: 'git@github.com:donnemartin/system-design-primer.git', dest: '~/github_forks/system-design-primer/'}
         - {repo: 'git@github.com:pimoroni/pimoroni-pico.git', dest: '~/github_forks/pimoroni-pico/'}
+        - {repo: 'git@github.com:oaknorthbank/python-pairing-exercise.git', dest: '~/github_forks/python-pairing-exercise'}
       tags:
         - repos
         - forks
