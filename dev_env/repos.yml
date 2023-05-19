@@ -40,6 +40,8 @@
           '~/github_repos/zmk-config/'}
         - {repo: 'git@github.com:jackson15j/python_homework_config_file_parser.git', dest:
           '~/github_repos/python_homework_config_file_parser/'}
+        - {repo: 'git@github.com:jackson15j/go_noodling.git', dest:
+          '~/github_repos/go_noodling/'}
       tags:
         - repos
 
