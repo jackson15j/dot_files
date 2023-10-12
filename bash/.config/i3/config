@@ -63,6 +63,11 @@ bindsym $mod+Shift+p exec pulsemixer
 bindsym $mod+Ctrl+Return exec "(playerctl -p spotifyd status | grep Playing &> 0 && playerctl -p spotifyd pause) || (playerctl -p spotifyd status | grep Paused &> 0 && playerctl -p spotifyd play)"
 bindsym $mod+Ctrl+n exec playerctl -p spotifyd next
 bindsym $mod+Ctrl+p exec playerctl -p spotifyd previous
+
+# Toggle Jabra bluetooth headset into HeadSet profile for video calls (default:
+# A2DP and no auto-switching).
+bindsym $mod+Shift+b exec pacmd set-card-profile bluez_card.30_50_75_D6_88_E9 handsfree_head_unit
+
 # Toggle dunst notifications off/on.
 bindsym $mod+Ctrl+m exec dunstctl set-paused toggle
 # Screenshot select region.
