@@ -6,3 +6,4 @@
 *.state
 *.rc
 .DS_Store
+/bash/.config/mpv/watch_later/
