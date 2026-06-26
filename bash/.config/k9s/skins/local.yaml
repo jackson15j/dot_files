@@ -1,0 +1,18 @@
+k9s:
+  body:
+    fgColor: white
+    bgColor: black
+  info:
+    sectionColor: green
+    fgColor: white
+  frame:
+    title:
+      fgColor: green
+      bgColor: black
+      highlightColor: green
+    border:
+      fgColor: green
+      focusColor: green
+  views:
+    table:
+      cursorColor: green
