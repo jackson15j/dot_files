@@ -93,7 +93,10 @@ whole picture stays coherent.
    works, one `pattern-locator` to find existing patterns to mirror. Give each a
    distinct question. Consolidate their short returns yourself.
 3. Ask the user clarifying questions until 95% confident on scope.
-4. Enter plan mode. Present the implementation plan for approval.
+4. Call the `EnterPlanMode` tool FIRST to enter plan mode. Only after that,
+   present the implementation plan and call `ExitPlanMode` to request approval.
+   (`ExitPlanMode` errors with "You are not in plan mode" if you skip the
+   `EnterPlanMode` step — never call it before entering plan mode.)
 5. **Size check — split before you build.** If the change is cross-cutting
    (touches >~15 files, or multiple apps/products + a shared contract + docs),
    plan it as a STACK of small PRs, not one. A good default split for a
