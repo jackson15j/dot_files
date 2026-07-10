@@ -10,3 +10,26 @@
 /bash/.config/nvim/
 /bash/.config/goldencheetah.org/
 /bash/.config/github-copilot/apps.json
+
+# .claude/
+.last-cleanup
+.claude.json
+.claude.json.backup*
+.credentials.json
+history.jsonl
+secrets.sh
+stats-cache.json
+**/.claude/cache/
+**/.claude/debug/
+**/.claude/file-history/
+**/.claude/paste-cache/
+**/.claude/plans/
+**/.claude/plugins/
+**/.claude/projects/
+**/.claude/sessions/
+**/.claude/skills/*
+!**/.claude/skills/subagent-orchestrator/
+**/.claude/shell-snapshots/
+**/.claude/tasks/
+**/.claude/telemetry/
+**/.claude/test.restclient

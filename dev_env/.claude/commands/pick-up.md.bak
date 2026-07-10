@@ -1,0 +1,47 @@
+---
+description: Fetch, assign a Linear issue to yourself, mark in-progress, branch, implement and push a PR
+argument-hint: <linear-id> (e.g. COE-456)
+allowed-tools:
+  - Bash
+  - mcp__linear-server__get_issue
+  - mcp__linear-server__get_user
+  - mcp__linear-server__list_issue_statuses
+  - mcp__linear-server__save_issue
+model: rvu-default-opus
+---
+
+The Linear issue ID is: $ARGUMENTS
+
+Follow these steps in order:
+
+1. Get the current user with `get_user` (query: "me") to retrieve your user ID.
+
+2. Assign the issue to yourself and mark it In Progress:
+   - Use `list_issue_statuses` to find the "In Progress" status ID for the issue's team
+   - Use `save_issue` with `id: $ARGUMENTS`, `assignee: "me"`, and `state` set to the In Progress status
+
+Then enter plan mode and present your implementation plan for approval.
+
+Follow these steps in order:
+
+1. Run `git fetch --all --prune` to get the latest remote state.
+
+2. Look up the Linear issue using the `get_issue` tool with id `$ARGUMENTS`. Read the title and description carefully — the title will inform the branch name and PR title.
+
+3. Ask my clarifying questions until you are 95% confident.
+
+4. Create a branch from `origin/main` following the repo naming convention:
+   - Format: `<type>/[<linear_id>]_<description>`
+   - `<type>` is typically `feature`, `fix`, or `chore` based on the issue type
+   - `<linear_id>` is the lowercased issue ID, e.g. `coe-456`
+   - `<description>` is a short kebab-case slug derived from the issue title
+   - Example: `feature/coe-456_add-travel-excess-options`
+   - Run: `git checkout -b <branch-name> origin/main`
+
+5. Run: `/implement-plan`
+
+6. Run: `/cr`
+
+7. Push the branch and open a PR:
+   - `git push -u origin <branch-name>`
+   - Create a PR using `gh pr create` with a title and description that covers the full scope of changes and a test plan
