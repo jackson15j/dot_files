@@ -63,31 +63,25 @@ fi
 [ "$DAY_COST" != "…" ] && DAY_COST=$(printf '%.2f' "$DAY_COST")
 [ "$WEEK_COST" != "…" ] && WEEK_COST=$(printf '%.2f' "$WEEK_COST")
 
-# Colours a "LABEL: $cost" pair orange at 75-100% of threshold, red beyond it.
-colorize_cost() {
-  local cost="$1" threshold="$2" label="$3"
-  if [ "$cost" = "…" ]; then
-    printf '%s: $%s' "$label" "$cost"
+# Wraps text in orange/red per threshold_color, unless value is the "…" cache-not-ready marker.
+colorize() {
+  local value="$1" threshold="$2" text="$3"
+  if [ "$value" = "…" ]; then
+    printf '%s' "$text"
     return
   fi
   local color
-  color=$(threshold_color "$cost" "$threshold")
+  color=$(threshold_color "$value" "$threshold")
   if [ -n "$color" ]; then
-    printf '%s%s: $%s%s' "$color" "$label" "$cost" "$COLOR_RESET"
+    printf '%s%s%s' "$color" "$text" "$COLOR_RESET"
   else
-    printf '%s: $%s' "$label" "$cost"
+    printf '%s' "$text"
   fi
 }
 
-DAY_PART=$(colorize_cost "$DAY_COST" "$COST_THRESHOLD_DAILY" "D")
-WEEK_PART=$(colorize_cost "$WEEK_COST" "$COST_THRESHOLD_WEEKLY" "W")
-
-CONTEXT_COLOR=$(threshold_color "$PCT" "$CONTEXT_THRESHOLD")
-if [ -n "$CONTEXT_COLOR" ]; then
-  CONTEXT_PART="${CONTEXT_COLOR}${PCT}% context${COLOR_RESET}"
-else
-  CONTEXT_PART="${PCT}% context"
-fi
+DAY_PART=$(colorize "$DAY_COST" "$COST_THRESHOLD_DAILY" "D: \$${DAY_COST}")
+WEEK_PART=$(colorize "$WEEK_COST" "$COST_THRESHOLD_WEEKLY" "W: \$${WEEK_COST}")
+CONTEXT_PART=$(colorize "$PCT" "$CONTEXT_THRESHOLD" "${PCT}% context")
 
 # Output the status line - ${DIR##*/} extracts just the folder name
 echo "[$MODEL] 📁 ${DIR##*/} | ${CONTEXT_PART} | ${DAY_PART}, ${WEEK_PART}"
