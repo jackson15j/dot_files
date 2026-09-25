@@ -18,11 +18,23 @@ COST_LOCK="/tmp/.claude-statusline-cost.lock"
 COST_TTL=60
 COST_THRESHOLD_DAILY=100
 COST_THRESHOLD_WEEKLY=500
+CONTEXT_THRESHOLD=30
 
 # ANSI escape sequences (literal ESC byte, no further interpretation needed)
-COST_RED=$'\033[31m'
-COST_ORANGE=$'\033[38;5;208m'
-COST_RESET=$'\033[0m'
+COLOR_RED=$'\033[31m'
+COLOR_ORANGE=$'\033[38;5;208m'
+COLOR_RESET=$'\033[0m'
+
+# Orange at 75-100% of threshold, red beyond it, empty otherwise.
+threshold_color() {
+  local value="$1" threshold="$2" pct
+  pct=$(awk -v v="$value" -v t="$threshold" 'BEGIN { printf "%.4f", (t > 0) ? (v / t * 100) : 0 }')
+  if awk -v p="$pct" 'BEGIN { exit !(p > 100) }'; then
+    printf '%s' "$COLOR_RED"
+  elif awk -v p="$pct" 'BEGIN { exit !(p >= 75) }'; then
+    printf '%s' "$COLOR_ORANGE"
+  fi
+}
 
 refresh_cost_cache() {
   local day_cost week_cost
@@ -58,15 +70,10 @@ colorize_cost() {
     printf '%s: $%s' "$label" "$cost"
     return
   fi
-  local pct color=""
-  pct=$(awk -v c="$cost" -v t="$threshold" 'BEGIN { printf "%.4f", (t > 0) ? (c / t * 100) : 0 }')
-  if awk -v p="$pct" 'BEGIN { exit !(p > 100) }'; then
-    color="$COST_RED"
-  elif awk -v p="$pct" 'BEGIN { exit !(p >= 75) }'; then
-    color="$COST_ORANGE"
-  fi
+  local color
+  color=$(threshold_color "$cost" "$threshold")
   if [ -n "$color" ]; then
-    printf '%s%s: $%s%s' "$color" "$label" "$cost" "$COST_RESET"
+    printf '%s%s: $%s%s' "$color" "$label" "$cost" "$COLOR_RESET"
   else
     printf '%s: $%s' "$label" "$cost"
   fi
@@ -75,8 +82,15 @@ colorize_cost() {
 DAY_PART=$(colorize_cost "$DAY_COST" "$COST_THRESHOLD_DAILY" "D")
 WEEK_PART=$(colorize_cost "$WEEK_COST" "$COST_THRESHOLD_WEEKLY" "W")
 
+CONTEXT_COLOR=$(threshold_color "$PCT" "$CONTEXT_THRESHOLD")
+if [ -n "$CONTEXT_COLOR" ]; then
+  CONTEXT_PART="${CONTEXT_COLOR}${PCT}% context${COLOR_RESET}"
+else
+  CONTEXT_PART="${PCT}% context"
+fi
+
 # Output the status line - ${DIR##*/} extracts just the folder name
-echo "[$MODEL] 📁 ${DIR##*/} | ${PCT}% context | ${DAY_PART}, ${WEEK_PART}"
+echo "[$MODEL] 📁 ${DIR##*/} | ${CONTEXT_PART} | ${DAY_PART}, ${WEEK_PART}"
 
 
 # # Claude Code status line — PS1-style display + model + context progress bar
