@@ -16,6 +16,13 @@ PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1
 COST_CACHE="/tmp/.claude-statusline-cost-cache"
 COST_LOCK="/tmp/.claude-statusline-cost.lock"
 COST_TTL=60
+COST_THRESHOLD_DAILY=100
+COST_THRESHOLD_WEEKLY=500
+
+# ANSI escape sequences (literal ESC byte, no further interpretation needed)
+COST_RED=$'\033[31m'
+COST_ORANGE=$'\033[38;5;208m'
+COST_RESET=$'\033[0m'
 
 refresh_cost_cache() {
   local day_cost week_cost
@@ -44,8 +51,32 @@ fi
 [ "$DAY_COST" != "…" ] && DAY_COST=$(printf '%.2f' "$DAY_COST")
 [ "$WEEK_COST" != "…" ] && WEEK_COST=$(printf '%.2f' "$WEEK_COST")
 
+# Colours a "LABEL: $cost" pair orange at 75-100% of threshold, red beyond it.
+colorize_cost() {
+  local cost="$1" threshold="$2" label="$3"
+  if [ "$cost" = "…" ]; then
+    printf '%s: $%s' "$label" "$cost"
+    return
+  fi
+  local pct color=""
+  pct=$(awk -v c="$cost" -v t="$threshold" 'BEGIN { printf "%.4f", (t > 0) ? (c / t * 100) : 0 }')
+  if awk -v p="$pct" 'BEGIN { exit !(p > 100) }'; then
+    color="$COST_RED"
+  elif awk -v p="$pct" 'BEGIN { exit !(p >= 75) }'; then
+    color="$COST_ORANGE"
+  fi
+  if [ -n "$color" ]; then
+    printf '%s%s: $%s%s' "$color" "$label" "$cost" "$COST_RESET"
+  else
+    printf '%s: $%s' "$label" "$cost"
+  fi
+}
+
+DAY_PART=$(colorize_cost "$DAY_COST" "$COST_THRESHOLD_DAILY" "D")
+WEEK_PART=$(colorize_cost "$WEEK_COST" "$COST_THRESHOLD_WEEKLY" "W")
+
 # Output the status line - ${DIR##*/} extracts just the folder name
-echo "[$MODEL] 📁 ${DIR##*/} | ${PCT}% context | D: \$${DAY_COST}, W: \$${WEEK_COST}"
+echo "[$MODEL] 📁 ${DIR##*/} | ${PCT}% context | ${DAY_PART}, ${WEEK_PART}"
 
 
 # # Claude Code status line — PS1-style display + model + context progress bar
