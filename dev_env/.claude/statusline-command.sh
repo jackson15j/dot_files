@@ -9,8 +9,43 @@ DIR=$(echo "$input" | jq -r '.workspace.current_dir')
 # The "// 0" provides a fallback if the field is null
 PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 
+# Day/week spend across ALL sessions (ccusage), refreshed in the background
+# so the statusline itself never blocks on it.
+# Installed by: `npm i -g ccusage`
+# See: https://github.com/ccusage/ccusage
+COST_CACHE="/tmp/.claude-statusline-cost-cache"
+COST_LOCK="/tmp/.claude-statusline-cost.lock"
+COST_TTL=60
+
+refresh_cost_cache() {
+  local day_cost week_cost
+  day_cost=$(ccusage daily --json --last 1 2>/dev/null | jq -r '.totals.totalCost // 0')
+  week_cost=$(ccusage weekly --json --last 1 2>/dev/null | jq -r '.totals.totalCost // 0')
+  printf '%s %s\n' "$day_cost" "$week_cost" > "${COST_CACHE}.tmp" && mv "${COST_CACHE}.tmp" "$COST_CACHE"
+}
+
+cache_age=$COST_TTL
+if [ -f "$COST_CACHE" ]; then
+  cache_mtime=$(stat -f %m "$COST_CACHE" 2>/dev/null || stat -c %Y "$COST_CACHE" 2>/dev/null || echo 0)
+  cache_age=$(( $(date +%s) - cache_mtime ))
+fi
+
+if [ "$cache_age" -ge "$COST_TTL" ] && mkdir "$COST_LOCK" 2>/dev/null; then
+  ( refresh_cost_cache; rmdir "$COST_LOCK" ) >/dev/null 2>&1 &
+  disown 2>/dev/null
+fi
+
+if [ -f "$COST_CACHE" ]; then
+  read -r DAY_COST WEEK_COST < "$COST_CACHE"
+else
+  DAY_COST="…"
+  WEEK_COST="…"
+fi
+[ "$DAY_COST" != "…" ] && DAY_COST=$(printf '%.2f' "$DAY_COST")
+[ "$WEEK_COST" != "…" ] && WEEK_COST=$(printf '%.2f' "$WEEK_COST")
+
 # Output the status line - ${DIR##*/} extracts just the folder name
-echo "[$MODEL] 📁 ${DIR##*/} | ${PCT}% context"
+echo "[$MODEL] 📁 ${DIR##*/} | ${PCT}% context | D: \$${DAY_COST}, W: \$${WEEK_COST}"
 
 
 # # Claude Code status line — PS1-style display + model + context progress bar
