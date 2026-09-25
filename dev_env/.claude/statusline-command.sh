@@ -35,7 +35,23 @@ threshold_color() {
     printf '%s' "$COLOR_ORANGE"
   fi
 }
+# Wraps text in orange/red per threshold_color, unless value is the "…" cache-not-ready marker.
+colorize() {
+  local value="$1" threshold="$2" text="$3"
+  if [ "$value" = "…" ]; then
+    printf '%s' "$text"
+    return
+  fi
+  local color
+  color=$(threshold_color "$value" "$threshold")
+  if [ -n "$color" ]; then
+    printf '%s%s%s' "$color" "$text" "$COLOR_RESET"
+  else
+    printf '%s' "$text"
+  fi
+}
 
+## Cost cache handling ##
 refresh_cost_cache() {
   local day_cost week_cost
   day_cost=$(ccusage daily --json --last 1 2>/dev/null | jq -r '.totals.totalCost // 0')
@@ -63,22 +79,7 @@ fi
 [ "$DAY_COST" != "…" ] && DAY_COST=$(printf '%.2f' "$DAY_COST")
 [ "$WEEK_COST" != "…" ] && WEEK_COST=$(printf '%.2f' "$WEEK_COST")
 
-# Wraps text in orange/red per threshold_color, unless value is the "…" cache-not-ready marker.
-colorize() {
-  local value="$1" threshold="$2" text="$3"
-  if [ "$value" = "…" ]; then
-    printf '%s' "$text"
-    return
-  fi
-  local color
-  color=$(threshold_color "$value" "$threshold")
-  if [ -n "$color" ]; then
-    printf '%s%s%s' "$color" "$text" "$COLOR_RESET"
-  else
-    printf '%s' "$text"
-  fi
-}
-
+# Applying threshold colours
 DAY_PART=$(colorize "$DAY_COST" "$COST_THRESHOLD_DAILY" "D: \$${DAY_COST}")
 WEEK_PART=$(colorize "$WEEK_COST" "$COST_THRESHOLD_WEEKLY" "W: \$${WEEK_COST}")
 CONTEXT_PART=$(colorize "$PCT" "$CONTEXT_THRESHOLD" "${PCT}% context")
