@@ -33,3 +33,9 @@ stats-cache.json
 **/.claude/tasks/
 **/.claude/telemetry/
 **/.claude/test.restclient
+/dev_env/.claude/commands/cx/
+/dev_env/.claude/remote-settings.json
+/dev_env/.claude/remote-settings-consent.json
+/dev_env/.claude/policy-limits.json
+/dev_env/.claude/mcp-needs-auth-cache.json
+/dev_env/.claude/teams/
