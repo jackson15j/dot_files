@@ -56,6 +56,16 @@
             "timeout": 2
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // \"\"' | grep -Eiq '\\$\\{?[A-Za-z_]*(TOKEN|SECRET|API[_-]?KEY|PASSWORD|CREDENTIAL)[A-Za-z_]*\\}?' && jq -n '{hookSpecificOutput:{hookEventName:\"PreToolUse\",permissionDecision:\"ask\",permissionDecisionReason:\"Command references what looks like a secret env var (TOKEN/SECRET/KEY/PASSWORD) - verify it cannot print the real value.\"}}' || true",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "SessionEnd": [
