@@ -52,12 +52,21 @@ colorize() {
 }
 
 ## Cost cache handling ##
+COST_LOCK_STALE_MINUTES=5
+
+is_number() {
+  [[ "$1" =~ ^[0-9]+(\.[0-9]+)?$ ]]
+}
+
 refresh_cost_cache() {
   local day_cost week_cost
-  day_cost=$(ccusage daily --json --last 1 2>/dev/null | jq -r '.totals.totalCost // 0')
-  week_cost=$(ccusage weekly --json --last 1 2>/dev/null | jq -r '.totals.totalCost // 0')
+  day_cost=$(ccusage daily --json --last 1 2>/dev/null | jq -r '.totals.totalCost // empty')
+  week_cost=$(ccusage weekly --json --last 1 2>/dev/null | jq -r '.totals.totalCost // empty')
+  is_number "$day_cost" && is_number "$week_cost" || return 1
   printf '%s %s\n' "$day_cost" "$week_cost" > "${COST_CACHE}.tmp" && mv "${COST_CACHE}.tmp" "$COST_CACHE"
 }
+
+find "$COST_LOCK" -maxdepth 0 -type d -mmin "+${COST_LOCK_STALE_MINUTES}" -exec rmdir {} \; 2>/dev/null
 
 cache_age=$COST_TTL
 if [ -f "$COST_CACHE" ]; then
